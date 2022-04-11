@@ -1,13 +1,37 @@
 package application;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Controleur {
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+
+public class Controleur implements Initializable {
 	@FXML
 	private Button bouton;
 
+	@FXML
+	private ListView<String> listeConstructions;
+
+	private String[] temporaire_listView = { "Construction 1", "Construction 2", "Construction 3" };
+
 	public void bouton_action() {
-		System.out.print("test ");
+		listeConstructions.setVisible(!listeConstructions.isVisible());
+		System.out.println("test ");
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		listeConstructions.getItems().addAll(temporaire_listView);
+		listeConstructions.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
+				System.out.println(listeConstructions.getSelectionModel().getSelectedItem());
+			}
+		});
 	}
 }
