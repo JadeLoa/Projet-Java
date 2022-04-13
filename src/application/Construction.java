@@ -1,14 +1,15 @@
 package application;
 
-import java.io.File;
+import java.util.LinkedList;
 
 public class Construction {
 	
 	public String nomConstruction;
+	private LinkedList<Brique> listeBrique;
 	
 	public Construction(String nomC) {
 		this.nomConstruction=nomC;
-		File listeBrique = new File("listeBrique.txt");
+		this.listeBrique = new LinkedList<>();
 	}
 
 }
