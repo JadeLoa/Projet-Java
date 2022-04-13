@@ -7,12 +7,19 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
 public class Controleur implements Initializable {
 	@FXML
 	private Button bouton;
+	@FXML
+	private Button bAjout;
+	@FXML
+	private Button bSuppr;
+	@FXML
+	private Canvas canvas;
 
 	@FXML
 	private ListView<String> listeConstructions;
@@ -22,6 +29,14 @@ public class Controleur implements Initializable {
 	public void bouton_action() {
 		listeConstructions.setVisible(!listeConstructions.isVisible());
 		System.out.println("test ");
+	}
+
+	public void ajout_cons() {
+
+	}
+
+	public void suppr_cons() {
+
 	}
 
 	@Override
