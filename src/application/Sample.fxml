@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controleur">
    <children>
-      <Label alignment="CENTER" layoutX="393.0" layoutY="186.0" prefHeight="65.0" prefWidth="220.0" text="TITRE" textAlignment="CENTER" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0">
+      <Label fx:id="titre" alignment="CENTER" layoutX="393.0" layoutY="186.0" prefHeight="65.0" prefWidth="220.0" text="TITRE" textAlignment="CENTER" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0">
          <font>
             <Font name="Arial Nova Bold" size="48.0" />
          </font>
