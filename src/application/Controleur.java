@@ -9,7 +9,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 public class Controleur implements Initializable {
 	@FXML
@@ -20,6 +22,14 @@ public class Controleur implements Initializable {
 	private Button bSuppr;
 	@FXML
 	private Canvas canvas;
+	@FXML
+	private ChoiceBox<String> couleurInput;
+	@FXML
+	private TextField largeurInput;
+	@FXML
+	private TextField longeurInput;
+	@FXML
+	private TextField hauteurInput;
 
 	@FXML
 	private ListView<String> listeConstructions;
