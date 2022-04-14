@@ -15,21 +15,13 @@ import javafx.scene.control.TextField;
 
 public class Controleur implements Initializable {
 	@FXML
-	private Button bouton;
-	@FXML
-	private Button bAjout;
-	@FXML
-	private Button bSuppr;
+	private Button bouton, bAjout, bSuppr;
 	@FXML
 	private Canvas canvas;
 	@FXML
 	private ChoiceBox<String> couleurInput;
 	@FXML
-	private TextField largeurInput;
-	@FXML
-	private TextField longeurInput;
-	@FXML
-	private TextField hauteurInput;
+	private TextField largeurInput, longeurInput, hauteurInput;
 
 	@FXML
 	private ListView<String> listeConstructions;
@@ -58,5 +50,10 @@ public class Controleur implements Initializable {
 				System.out.println(listeConstructions.getSelectionModel().getSelectedItem());
 			}
 		});
+
+		this.couleurInput.setVisible(false);
+		this.hauteurInput.setVisible(false);
+		this.largeurInput.setVisible(false);
+		this.longeurInput.setVisible(false);
 	}
 }
