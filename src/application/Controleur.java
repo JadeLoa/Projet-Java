@@ -22,7 +22,6 @@ public class Controleur implements Initializable {
 	private ChoiceBox<String> couleurInput;
 	@FXML
 	private TextField largeurInput, longeurInput, hauteurInput;
-
 	@FXML
 	private ListView<String> listeConstructions, listeBriques;
 
