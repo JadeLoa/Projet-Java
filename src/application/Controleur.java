@@ -27,12 +27,18 @@ public class Controleur implements Initializable {
 	private Label titre;
 
 	@FXML
-	private ListView<String> listeConstructions;
+	private ListView<String> listeConstructions, listeBriques;
 
 	private String[] temporaire_listView = { "Construction 1", "Construction 2", "Construction 3" };
+	private String[] temporaire_listView2 = { "Brique 1", "Brique 2", "Brique 3" };
 
 	public void bouton_action() {
-		listeConstructions.setVisible(!listeConstructions.isVisible());
+		this.listeConstructions.setVisible(!this.listeConstructions.isVisible());
+		this.listeBriques.setVisible(!this.listeBriques.isVisible());
+		this.couleurInput.setVisible(!this.couleurInput.isVisible());
+		this.hauteurInput.setVisible(!this.hauteurInput.isVisible());
+		this.largeurInput.setVisible(!this.largeurInput.isVisible());
+		this.longeurInput.setVisible(!this.longeurInput.isVisible());
 		System.out.println("test ");
 	}
 
@@ -53,10 +59,12 @@ public class Controleur implements Initializable {
 				System.out.println(listeConstructions.getSelectionModel().getSelectedItem());
 			}
 		});
-
-		this.couleurInput.setVisible(false);
-		this.hauteurInput.setVisible(false);
-		this.largeurInput.setVisible(false);
-		this.longeurInput.setVisible(false);
+		listeBriques.getItems().addAll(temporaire_listView2);
+		listeBriques.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
+				System.out.println(listeBriques.getSelectionModel().getSelectedItem());
+			}
+		});
 	}
 }
