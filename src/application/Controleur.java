@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -23,8 +22,6 @@ public class Controleur implements Initializable {
 	private ChoiceBox<String> couleurInput;
 	@FXML
 	private TextField largeurInput, longeurInput, hauteurInput;
-	@FXML
-	private Label titre;
 
 	@FXML
 	private ListView<String> listeConstructions, listeBriques;
