@@ -14,6 +14,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class Controleur implements Initializable {
+	Modele modele;
+
 	@FXML
 	private Button bouton, bAjout, bSuppr;
 	@FXML
@@ -27,7 +29,7 @@ public class Controleur implements Initializable {
 
 	private String[] temporaire_listView = { "Construction 1", "Construction 2", "Construction 3" };
 	private String[] temporaire_listView2 = { "Brique 1", "Brique 2", "Brique 3" };
-	private String[] listColors = { "Rouge", "Bleu" };
+	private String[] listColors = { "Rouge", "Bleu", "Vert", "Jaune", "Noir", "Gris", "Orange" };
 
 	public void bouton_action() {
 		this.listeConstructions.setVisible(!this.listeConstructions.isVisible());
@@ -36,7 +38,6 @@ public class Controleur implements Initializable {
 		this.hauteurInput.setVisible(!this.hauteurInput.isVisible());
 		this.largeurInput.setVisible(!this.largeurInput.isVisible());
 		this.longeurInput.setVisible(!this.longeurInput.isVisible());
-		System.out.println("test ");
 	}
 
 	public void ajout_cons() {
@@ -49,6 +50,9 @@ public class Controleur implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		this.modele = new Modele();
+
+		// - - - - - LISTE DES CONSTRUCTIONS - - - - -
 		listeConstructions.getItems().addAll(temporaire_listView);
 		listeConstructions.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
@@ -56,6 +60,8 @@ public class Controleur implements Initializable {
 				System.out.println(listeConstructions.getSelectionModel().getSelectedItem());
 			}
 		});
+
+		// - - - - - LISTE DES BRIQUES (MODIFICATION) - - - - -
 		listeBriques.getItems().addAll(temporaire_listView2);
 		listeBriques.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
@@ -63,11 +69,13 @@ public class Controleur implements Initializable {
 				System.out.println(listeBriques.getSelectionModel().getSelectedItem());
 			}
 		});
+
+		// - - - - - LISTE DES COULEURS POUR LES BRIQUES - - - - -
 		couleurInput.getItems().addAll(listColors);
 		couleurInput.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
-				System.out.println(couleurInput.getSelectionModel().getSelectedItem()); // index marche aussi
+				modele.changerCouleur(couleurInput.getSelectionModel().getSelectedIndex());
 			}
 		});
 		couleurInput.getSelectionModel().select(0);

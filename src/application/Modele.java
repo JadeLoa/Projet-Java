@@ -15,6 +15,8 @@ public class Modele {
 	};
 
 	private PointVue pdv = PointVue.N;
+	private Color[] listeCouleurs = { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.VIOLET,
+			Color.BLACK, Color.GRAY };
 	private Color couleurEnCours = Color.RED;// couleur par défaut
 	private LinkedList<Construction> listeConstruction;
 	private LinkedList<Brique> ordreB;
@@ -74,6 +76,11 @@ public class Modele {
 		// supprime la construction de la liste construction
 		// retourne liste construction à jour
 		return false; // true si on a suprimé la construction, false sinon
+	}
+
+	void changerCouleur(int i) {
+		this.couleurEnCours = this.listeCouleurs[i];
+		System.out.print(i);
 	}
 
 }
