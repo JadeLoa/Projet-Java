@@ -27,6 +27,7 @@ public class Controleur implements Initializable {
 
 	private String[] temporaire_listView = { "Construction 1", "Construction 2", "Construction 3" };
 	private String[] temporaire_listView2 = { "Brique 1", "Brique 2", "Brique 3" };
+	private String[] listColors = { "Rouge", "Bleu" };
 
 	public void bouton_action() {
 		this.listeConstructions.setVisible(!this.listeConstructions.isVisible());
@@ -62,5 +63,13 @@ public class Controleur implements Initializable {
 				System.out.println(listeBriques.getSelectionModel().getSelectedItem());
 			}
 		});
+		couleurInput.getItems().addAll(listColors);
+		couleurInput.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
+				System.out.println(couleurInput.getSelectionModel().getSelectedItem()); // index marche aussi
+			}
+		});
+		couleurInput.getSelectionModel().select(0);
 	}
 }
