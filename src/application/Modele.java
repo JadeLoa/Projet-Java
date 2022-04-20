@@ -75,10 +75,11 @@ public class Modele {
 		listeTriee.add(listeATrier.get(0));
 		for (int i = 1; i < listeATrier.size(); i++) {
 			int cpt = 0;
-			while (X * listeATrier.get(i).x > X * listeTriee.get(cpt).x
-					&& Y * listeATrier.get(i).y > Y * listeTriee.get(cpt).y
-					&& Z * listeATrier.get(i).z > Z * listeTriee.get(cpt).z //
-					&& cpt < listeTriee.size()) {
+			while (cpt < listeTriee.size() //
+					&& X * listeATrier.get(i).x >= X * listeTriee.get(cpt).x
+					&& Y * listeATrier.get(i).y >= Y * listeTriee.get(cpt).y
+					&& Z * listeATrier.get(i).z >= Z * listeTriee.get(cpt).z) {
+				System.out.println(i + " " + listeATrier.size());
 				cpt++;
 			}
 			listeTriee.add(cpt, listeATrier.get(i));

@@ -1,6 +1,7 @@
 package application;
 
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
@@ -90,5 +91,12 @@ public class Controleur implements Initializable {
 		gc.setFill(Color.BLACK);
 		gc.fillRect(0, 0, 50, 50);
 		gc.fill();
+
+		LinkedList<Brique> testL = new LinkedList<>();
+		testL.add(new Brique(0, 0, 0, Color.BLACK, 0, 3, 0));
+		testL.add(new Brique(0, 0, 0, Color.BLACK, 1, 2, 3));
+		testL.add(new Brique(0, 0, 0, Color.BLACK, 2, 0, 0));
+		testL.add(new Brique(0, 0, 0, Color.BLACK, 0, 1, 0));
+		System.out.print(modele.ordreBrique(testL));
 	}
 }
