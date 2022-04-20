@@ -19,7 +19,7 @@ public class Controleur implements Initializable {
 	Modele modele;
 
 	@FXML
-	private Button bouton, bAjout, bSuppr;
+	private Button bouton, bAjout, bSuppr, bSupprBrique;
 	@FXML
 	private Canvas canvas;
 	@FXML
@@ -40,6 +40,9 @@ public class Controleur implements Initializable {
 		this.hauteurInput.setVisible(!this.hauteurInput.isVisible());
 		this.largeurInput.setVisible(!this.largeurInput.isVisible());
 		this.longeurInput.setVisible(!this.longeurInput.isVisible());
+		this.bAjout.setVisible(!this.bAjout.isVisible());
+		this.bSuppr.setVisible(!this.bSuppr.isVisible());
+		this.bSupprBrique.setVisible(!this.bSupprBrique.isVisible());
 	}
 
 	public void ajout_cons() {
