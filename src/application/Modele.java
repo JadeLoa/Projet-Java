@@ -83,7 +83,7 @@ public class Modele {
 			}
 			listeTriee.add(cpt, listeATrier.get(i));
 		}
-		return null;
+		return listeTriee;
 
 	}
 
