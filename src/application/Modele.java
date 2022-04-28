@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Modele {
@@ -51,7 +52,7 @@ public class Modele {
 		// on initialise constructionEnCours
 	}
 
-	void afficherConstruction() {
+	void afficherConstruction(GraphicsContext gc) {
 		// afficher la construction en cours grace au fichier dans lequel sont
 		// référencées toutes les briques
 		// contenues dans cette construction
@@ -59,6 +60,29 @@ public class Modele {
 
 		// lorsque l'utilisateur clique sur une construction elle devient la
 		// constructionEnCours
+
+		LinkedList<Brique> testL = new LinkedList<>(); // TODO renplacer avec liste de construction
+		testL.add(new Brique(2, 3, 4, Color.BLACK, 0, 3, 0));
+		testL.add(new Brique(1, 1, 1, Color.RED, 9, 2, 17));
+		testL.add(new Brique(10, 1, 1, Color.GREEN, 2, 0, 0));
+		testL.add(new Brique(2, 2, 1, Color.BLUE, 10, 1, 15));
+
+		testL = this.ordreBrique(testL);
+
+		for (int i = 0; i < testL.size(); i++) {
+			Brique briqueEnCours = testL.get(i);
+			for (int x = 0; x < briqueEnCours.largeur; x++) {
+				for (int y = 0; y < briqueEnCours.longueur; y++) {
+					for (int z = 0; z < briqueEnCours.hauteur; z++) {
+						gc.setFill(briqueEnCours.couleur);
+						gc.fillRect((briqueEnCours.x + x) * 25, (briqueEnCours.z + z) * 25, briqueEnCours.largeur * 25,
+								briqueEnCours.hauteur * 25); // TODO ordre à changer en fonction de pdv
+						gc.fill();
+						// TODO ajouter iso
+					}
+				}
+			}
+		}
 	}
 
 	LinkedList<Brique> ordreBrique(LinkedList<Brique> listeATrier) {

@@ -89,7 +89,7 @@ public class Controleur implements Initializable {
 		GraphicsContext gc = this.canvas.getGraphicsContext2D();
 
 		gc.setFill(Color.BLACK);
-		gc.fillRect(0, 0, 50, 50);
+		gc.fillRect(0, 5, 25, 25);
 		gc.fill();
 
 		LinkedList<Brique> testL = new LinkedList<>();
@@ -98,5 +98,7 @@ public class Controleur implements Initializable {
 		testL.add(new Brique(0, 0, 0, Color.BLACK, 2, 0, 0));
 		testL.add(new Brique(0, 0, 0, Color.BLACK, 0, 1, 0));
 		System.out.print(modele.ordreBrique(testL));
+
+		this.modele.afficherConstruction(gc);
 	}
 }
