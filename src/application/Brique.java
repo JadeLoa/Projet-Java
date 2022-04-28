@@ -4,19 +4,20 @@ import javafx.scene.paint.Color;
 
 public class Brique {
 
-	public int hauteur, largeur, longueur, x, y, z;
+	public int largeur, longueur, hauteur, x, y, z;
 	public Color couleur;
 
-	public Brique(int hauteur, int largeur, int longueur, Color couleur, int x, int y, int z) {
-		this.hauteur = hauteur;
+	public Brique(int largeur, int longueur, int hauteur, Color couleur, int x, int y, int z) {
 		this.largeur = largeur;
 		this.longueur = longueur;
+		this.hauteur = hauteur;
 		this.couleur = couleur;
 		this.x = x;
 		this.y = y;
 		this.z = z;
 	}
-	
+
+	@Override
 	public String toString() {
 		return this.x + "," + this.y + "," + this.z;
 	}
