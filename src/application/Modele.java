@@ -114,12 +114,23 @@ public class Modele {
 
 	void sauvegarder(String nomSauvC) {
 		// modifie le fichier de la construction modifiée
+		
+		
+		
 	}
 
-	void ajouterBrique(int largeur, int longueur, int hauteur, int x, int y) {
+	void ajouterBrique(int largeur, int longueur, int hauteur, int x, int y, int z) {
 		// creer brique à la première place directement au dessous possible
 		// ne pas sortir des limites
-
+		
+		Brique newB = new Brique(largeur, longueur, hauteur,this.couleurEnCours, x, y, z);
+		
+		for(int i=0; i<this.listeConstruction.size(); i++) {
+			if(this.listeConstruction.get(i).nomConstruction == this.constructionEnCours) {
+				this.listeConstruction.get(i).listeBrique.addLast(newB);
+			}
+		}
+		
 		// mise à jour du fichier listeBrique de cette construction
 
 	}
@@ -127,6 +138,12 @@ public class Modele {
 	void supprimerBrique(int x, int y) {
 		// recherche la première brique dans la liste en partant du haut (z decroissant)
 		// et la supprime
+		
+		for(int i=0; i<this.ordreB.size(); i++) {
+			if (this.ordreB.get(i).x==x && this.ordreB.get(i).y==y) {
+				this.ordreB.remove(i);
+			}
+		}
 
 		// met la liste de brique a jour
 	}
@@ -135,7 +152,16 @@ public class Modele {
 		// vérifier que le nomConstruction n'existe pas déjà
 		// crée un fichier vide
 		// crée une nouvelle construction dans la liste des constructions
-		return false; // true si on a ajouté la construction, false sinon
+		for(int i=0; i<this.listeConstruction.size(); i++) {
+			if (this.listeConstruction.get(i).nomConstruction == nomNouvelleC) {
+				return false;
+			}
+		}
+		Construction newC = new Construction(nomNouvelleC);
+		this.listeConstruction.addLast(newC);
+		return true;
+		
+		// true si on a ajouté la construction, false sinon
 	}
 
 	boolean supprimerConstruction() {
