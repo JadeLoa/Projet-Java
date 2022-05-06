@@ -55,15 +55,14 @@ public class Modele {
 
 		File folder = new File("BibliConstruction");
 		File[] listOfFiles = folder.listFiles();
+		this.listeConstruction = new LinkedList<>();
 
 		for (int i = 0; i < listOfFiles.length; i++) {
-			this.listeConstruction = new LinkedList<>();
 			if (listOfFiles[i].isFile()) {
 				try {
 					String strFile = listOfFiles[i].getName();
 					if (strFile.endsWith(".json")) {
-						this.listeConstruction.add(
-								gson.fromJson(new FileReader(listOfFiles[i].getAbsoluteFile()), Construction.class));
+						this.listeConstruction.add(gson.fromJson(new FileReader(listOfFiles[i]), Construction.class));
 						listResults.add(strFile.substring(0, strFile.length() - 5));
 					}
 				} catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
@@ -71,6 +70,7 @@ public class Modele {
 				}
 			}
 		}
+		System.out.print(this.listeConstruction.size());
 		return listResults;
 	}
 
@@ -127,7 +127,7 @@ public class Modele {
 					&& X * listeATrier.get(i).x >= X * listeTriee.get(cpt).x
 					&& Y * listeATrier.get(i).y >= Y * listeTriee.get(cpt).y
 					&& Z * listeATrier.get(i).z >= Z * listeTriee.get(cpt).z) {
-				System.out.println(i + " " + listeATrier.size());
+				// System.out.println(i + " " + listeATrier.size());
 				cpt++;
 			}
 			listeTriee.add(cpt, listeATrier.get(i));
@@ -174,6 +174,9 @@ public class Modele {
 		// vérifier que le nomConstruction n'existe pas déjà
 		// crée un fichier vide
 		// crée une nouvelle construction dans la liste des constructions
+		if (nomNouvelleC.length() == 0) {
+			return false;
+		}
 		for (Construction c : this.listeConstruction) {
 			if (c.nomConstruction.equals(nomNouvelleC)) {
 				return false;
@@ -204,7 +207,6 @@ public class Modele {
 
 	void changerCouleur(int i) {
 		this.couleurEnCours = i;
-		System.out.print(i);
 	}
 
 }
