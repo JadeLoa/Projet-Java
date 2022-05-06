@@ -29,7 +29,7 @@ public class Modele {
 	private PointVue pdv = PointVue.N;
 	private Color[] listeCouleurs = { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.VIOLET,
 			Color.BLACK, Color.GRAY };
-	private Color couleurEnCours = Color.RED;// couleur par défaut
+	private int couleurEnCours = 0; // couleur par défaut (indice)
 	private LinkedList<Construction> listeConstruction;
 	private LinkedList<Brique> ordreB;
 
@@ -151,14 +151,13 @@ public class Modele {
 		// creer brique à la première place directement au dessous possible
 		// ne pas sortir des limites
 
-		/*
-		 * Brique newB = new Brique(largeur, longueur, hauteur, this.couleurEnCours, x,
-		 * y, z);
-		 * 
-		 * for (int i = 0; i < this.listeConstruction.size(); i++) { if
-		 * (this.listeConstruction.get(i).nomConstruction == this.constructionEnCours) {
-		 * this.listeConstruction.get(i).listeBrique.addLast(newB); } }
-		 */
+		Brique newB = new Brique(largeur, longueur, hauteur, this.couleurEnCours, x, y, z);
+
+		for (int i = 0; i < this.listeConstruction.size(); i++) {
+			if (this.listeConstruction.get(i).nomConstruction == this.constructionEnCours) {
+				this.listeConstruction.get(i).listeBrique.addLast(newB);
+			}
+		}
 
 		// mise à jour du fichier listeBrique de cette construction
 
@@ -200,7 +199,7 @@ public class Modele {
 	}
 
 	void changerCouleur(int i) {
-		this.couleurEnCours = this.listeCouleurs[i];
+		this.couleurEnCours = i;
 		System.out.print(i);
 	}
 
