@@ -44,7 +44,10 @@ public class Controleur implements Initializable {
 	}
 
 	public void ajout_cons() {
-
+		String nomC = this.consNomInput.getText();
+		if (this.modele.ajouterConstruction(nomC)) {
+			this.listeConstructions.getItems().add(nomC);
+		}
 	}
 
 	public void suppr_cons() {
@@ -82,7 +85,5 @@ public class Controleur implements Initializable {
 			}
 		});
 		couleurInput.getSelectionModel().select(0);
-
-		// - - - - - CREATION NOUVELLE CONSTRUCTION - - - - -
 	}
 }

@@ -44,21 +44,6 @@ public class Modele {
 		for (int i = 0; i < coefs.length; i++) {
 			coefVue.put(povs[i], coefs[i]);
 		}
-
-		Gson gson = new Gson();
-		Construction obj = new Construction("hello");
-
-		String json = gson.toJson(obj);
-
-		System.out.println("[" + json + "]");
-
-		try (FileWriter writer = new FileWriter("BibliConstruction/aa.json")) {
-			gson.toJson(obj, writer);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		// this.rechercherConstruction();
 	}
 
 	ArrayList<String> rechercherConstruction() {
@@ -189,12 +174,22 @@ public class Modele {
 		// vérifier que le nomConstruction n'existe pas déjà
 		// crée un fichier vide
 		// crée une nouvelle construction dans la liste des constructions
-		for (int i = 0; i < this.listeConstruction.size(); i++) {
-			if (this.listeConstruction.get(i).nomConstruction == nomNouvelleC) {
+		for (Construction c : this.listeConstruction) {
+			if (c.nomConstruction.equals(nomNouvelleC)) {
 				return false;
 			}
 		}
 		Construction newC = new Construction(nomNouvelleC);
+
+		Gson gson = new Gson();
+		String json = gson.toJson(newC);
+
+		try (FileWriter writer = new FileWriter("BibliConstruction/" + nomNouvelleC + ".json")) {
+			gson.toJson(newC, writer);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		this.listeConstruction.addLast(newC);
 		return true;
 
