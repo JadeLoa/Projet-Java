@@ -1,7 +1,6 @@
 package application;
 
 import java.net.URL;
-import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
@@ -9,12 +8,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 
 public class Controleur implements Initializable {
 	Modele modele;
@@ -85,20 +82,5 @@ public class Controleur implements Initializable {
 			}
 		});
 		couleurInput.getSelectionModel().select(0);
-
-		GraphicsContext gc = this.canvas.getGraphicsContext2D();
-
-		gc.setFill(Color.BLACK);
-		gc.fillRect(0, 5, 25, 25);
-		gc.fill();
-
-		LinkedList<Brique> testL = new LinkedList<>();
-		testL.add(new Brique(0, 0, 0, Color.BLACK, 0, 3, 0));
-		testL.add(new Brique(0, 0, 0, Color.BLACK, 1, 2, 3));
-		testL.add(new Brique(0, 0, 0, Color.BLACK, 2, 0, 0));
-		testL.add(new Brique(0, 0, 0, Color.BLACK, 0, 1, 0));
-		System.out.print(modele.ordreBrique(testL));
-
-		this.modele.afficherConstruction(gc);
 	}
 }

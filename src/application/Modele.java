@@ -1,6 +1,8 @@
 package application;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -8,6 +10,8 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -41,9 +45,10 @@ public class Modele {
 		}
 
 		Gson gson = new Gson();
-		int obj = 4;
+		Construction obj = new Construction("hello");
 
 		String json = gson.toJson(obj);
+
 		System.out.println("[" + json + "]");
 
 		try (FileWriter writer = new FileWriter("BibliConstruction/aa.json")) {
@@ -52,7 +57,7 @@ public class Modele {
 			e.printStackTrace();
 		}
 
-		this.rechercherConstruction();
+		// this.rechercherConstruction();
 	}
 
 	void rechercherConstruction() {
@@ -65,9 +70,12 @@ public class Modele {
 
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile()) {
-				System.out.println("File " + listOfFiles[i].getName());
-			} else if (listOfFiles[i].isDirectory()) {
-				System.out.println("Directory " + listOfFiles[i].getName());
+				try {
+					this.listeConstruction.add(
+							gson.fromJson(new FileReader("BibliConstruction/" + listOfFiles[i]), Construction.class));
+				} catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -82,6 +90,7 @@ public class Modele {
 		// constructionEnCours
 
 		LinkedList<Brique> testL = new LinkedList<>(); // TODO renplacer avec liste de construction
+		/* @formatter:off
 		testL.add(new Brique(2, 3, 4, Color.BLACK, 0, 3, 0));
 		testL.add(new Brique(1, 1, 1, Color.RED, 9, 2, 17));
 		testL.add(new Brique(10, 1, 1, Color.GREEN, 2, 0, 0));
@@ -103,6 +112,7 @@ public class Modele {
 				}
 			}
 		}
+		@formatter:on */
 	}
 
 	LinkedList<Brique> ordreBrique(LinkedList<Brique> listeATrier) {
@@ -141,13 +151,14 @@ public class Modele {
 		// creer brique à la première place directement au dessous possible
 		// ne pas sortir des limites
 
-		Brique newB = new Brique(largeur, longueur, hauteur, this.couleurEnCours, x, y, z);
-
-		for (int i = 0; i < this.listeConstruction.size(); i++) {
-			if (this.listeConstruction.get(i).nomConstruction == this.constructionEnCours) {
-				this.listeConstruction.get(i).listeBrique.addLast(newB);
-			}
-		}
+		/*
+		 * Brique newB = new Brique(largeur, longueur, hauteur, this.couleurEnCours, x,
+		 * y, z);
+		 * 
+		 * for (int i = 0; i < this.listeConstruction.size(); i++) { if
+		 * (this.listeConstruction.get(i).nomConstruction == this.constructionEnCours) {
+		 * this.listeConstruction.get(i).listeBrique.addLast(newB); } }
+		 */
 
 		// mise à jour du fichier listeBrique de cette construction
 
