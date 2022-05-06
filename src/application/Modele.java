@@ -27,24 +27,13 @@ public class Modele {
 	private Map<PointVue, int[]> coefVue = new HashMap<PointVue, int[]>();
 
 	public Modele() {
-		int[] a1 = { 0, -1, 0 };
-		coefVue.put(PointVue.N, a1);
-		int[] a2 = { 0, 1, 0 };
-		coefVue.put(PointVue.S, a2);
-		int[] a3 = { -1, 0, 0 };
-		coefVue.put(PointVue.E, a3);
-		int[] a4 = { 1, 0, 0 };
-		coefVue.put(PointVue.O, a4);
-		int[] a5 = { 0, 0, 1 };
-		coefVue.put(PointVue.DESSUS, a5);
-		int[] a6 = { -1, -1, 1 };
-		coefVue.put(PointVue.NE, a6);
-		int[] a7 = { 1, -1, 1 };
-		coefVue.put(PointVue.NO, a7);
-		int[] a8 = { -1, 1, 1 };
-		coefVue.put(PointVue.SE, a8);
-		int[] a9 = { 1, 1, 1 };
-		coefVue.put(PointVue.SO, a9);
+		int[][] coefs = { { 0, -1, 0 }, { 0, 1, 0 }, { -1, 0, 0 }, { 1, 0, 0 }, { 0, 0, 1 }, { -1, -1, 1 },
+				{ 1, -1, 1 }, { -1, 1, 1 }, { 1, 1, 1 } };
+		PointVue[] povs = { PointVue.N, PointVue.S, PointVue.E, PointVue.O, PointVue.DESSUS, PointVue.NE, PointVue.NO,
+				PointVue.SE, PointVue.SO };
+		for (int i = 0; i < coefs.length; i++) {
+			coefVue.put(povs[i], coefs[i]);
+		}
 	}
 
 	void rechercherConstruction() {
@@ -114,23 +103,21 @@ public class Modele {
 
 	void sauvegarder(String nomSauvC) {
 		// modifie le fichier de la construction modifiée
-		
-		
-		
+
 	}
 
 	void ajouterBrique(int largeur, int longueur, int hauteur, int x, int y, int z) {
 		// creer brique à la première place directement au dessous possible
 		// ne pas sortir des limites
-		
-		Brique newB = new Brique(largeur, longueur, hauteur,this.couleurEnCours, x, y, z);
-		
-		for(int i=0; i<this.listeConstruction.size(); i++) {
-			if(this.listeConstruction.get(i).nomConstruction == this.constructionEnCours) {
+
+		Brique newB = new Brique(largeur, longueur, hauteur, this.couleurEnCours, x, y, z);
+
+		for (int i = 0; i < this.listeConstruction.size(); i++) {
+			if (this.listeConstruction.get(i).nomConstruction == this.constructionEnCours) {
 				this.listeConstruction.get(i).listeBrique.addLast(newB);
 			}
 		}
-		
+
 		// mise à jour du fichier listeBrique de cette construction
 
 	}
@@ -138,9 +125,9 @@ public class Modele {
 	void supprimerBrique(int x, int y) {
 		// recherche la première brique dans la liste en partant du haut (z decroissant)
 		// et la supprime
-		
-		for(int i=0; i<this.ordreB.size(); i++) {
-			if (this.ordreB.get(i).x==x && this.ordreB.get(i).y==y) {
+
+		for (int i = 0; i < this.ordreB.size(); i++) {
+			if (this.ordreB.get(i).x == x && this.ordreB.get(i).y == y) {
 				this.ordreB.remove(i);
 			}
 		}
@@ -152,7 +139,7 @@ public class Modele {
 		// vérifier que le nomConstruction n'existe pas déjà
 		// crée un fichier vide
 		// crée une nouvelle construction dans la liste des constructions
-		for(int i=0; i<this.listeConstruction.size(); i++) {
+		for (int i = 0; i < this.listeConstruction.size(); i++) {
 			if (this.listeConstruction.get(i).nomConstruction == nomNouvelleC) {
 				return false;
 			}
@@ -160,7 +147,7 @@ public class Modele {
 		Construction newC = new Construction(nomNouvelleC);
 		this.listeConstruction.addLast(newC);
 		return true;
-		
+
 		// true si on a ajouté la construction, false sinon
 	}
 
