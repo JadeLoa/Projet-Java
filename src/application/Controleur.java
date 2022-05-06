@@ -53,10 +53,10 @@ public class Controleur implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		this.modele = new Modele();
+		this.modele = new Modele(); // Creation classe modèle
 
 		// - - - - - LISTE DES CONSTRUCTIONS - - - - -
-		listeConstructions.getItems().addAll(temporaire_listView);
+		listeConstructions.getItems().addAll(this.modele.rechercherConstruction());
 		listeConstructions.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {

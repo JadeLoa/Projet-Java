@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -60,24 +61,32 @@ public class Modele {
 		// this.rechercherConstruction();
 	}
 
-	void rechercherConstruction() {
+	ArrayList<String> rechercherConstruction() {
 		// recrée la linkedList listeConstruction par les fichiers (nomC)
 		// on initialise constructionEnCours
+		ArrayList<String> listResults = new ArrayList<>();
+
 		Gson gson = new Gson();
 
 		File folder = new File("BibliConstruction");
 		File[] listOfFiles = folder.listFiles();
 
 		for (int i = 0; i < listOfFiles.length; i++) {
+			this.listeConstruction = new LinkedList<>();
 			if (listOfFiles[i].isFile()) {
 				try {
-					this.listeConstruction.add(
-							gson.fromJson(new FileReader("BibliConstruction/" + listOfFiles[i]), Construction.class));
+					String strFile = listOfFiles[i].getName();
+					if (strFile.endsWith(".json")) {
+						this.listeConstruction.add(
+								gson.fromJson(new FileReader(listOfFiles[i].getAbsoluteFile()), Construction.class));
+						listResults.add(strFile.substring(0, strFile.length() - 5));
+					}
 				} catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
 					e.printStackTrace();
 				}
 			}
 		}
+		return listResults;
 	}
 
 	void afficherConstruction(GraphicsContext gc) {
