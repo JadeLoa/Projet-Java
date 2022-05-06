@@ -27,7 +27,6 @@ public class Controleur implements Initializable {
 	@FXML
 	private ListView<String> listeConstructions, listeBriques;
 
-	private String[] temporaire_listView = { "Construction 1", "Construction 2", "Construction 3" };
 	private String[] temporaire_listView2 = { "Brique 1", "Brique 2", "Brique 3" };
 	private String[] listColors = { "Rouge", "Bleu", "Vert", "Jaune", "Noir", "Gris", "Orange" };
 
@@ -56,7 +55,7 @@ public class Controleur implements Initializable {
 		this.modele = new Modele(); // Creation classe modèle
 
 		// - - - - - LISTE DES CONSTRUCTIONS - - - - -
-		listeConstructions.getItems().addAll(this.modele.rechercherConstruction());
+		listeConstructions.getItems().addAll(this.modele.rechercherConstruction()); // Obtention via fichiers
 		listeConstructions.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
