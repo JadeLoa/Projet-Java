@@ -1,8 +1,13 @@
 package application;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+
+import com.google.gson.Gson;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -34,11 +39,37 @@ public class Modele {
 		for (int i = 0; i < coefs.length; i++) {
 			coefVue.put(povs[i], coefs[i]);
 		}
+
+		Gson gson = new Gson();
+		int obj = 4;
+
+		String json = gson.toJson(obj);
+		System.out.println("[" + json + "]");
+
+		try (FileWriter writer = new FileWriter("BibliConstruction/aa.json")) {
+			gson.toJson(obj, writer);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		this.rechercherConstruction();
 	}
 
 	void rechercherConstruction() {
 		// recrée la linkedList listeConstruction par les fichiers (nomC)
 		// on initialise constructionEnCours
+		Gson gson = new Gson();
+
+		File folder = new File("BibliConstruction");
+		File[] listOfFiles = folder.listFiles();
+
+		for (int i = 0; i < listOfFiles.length; i++) {
+			if (listOfFiles[i].isFile()) {
+				System.out.println("File " + listOfFiles[i].getName());
+			} else if (listOfFiles[i].isDirectory()) {
+				System.out.println("Directory " + listOfFiles[i].getName());
+			}
+		}
 	}
 
 	void afficherConstruction(GraphicsContext gc) {
