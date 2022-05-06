@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controleur">
    <children>
-      <ListView fx:id="listeConstructions" layoutX="38.0" layoutY="93.0" prefHeight="214.0" prefWidth="220.0" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0" />
+      <ListView fx:id="listeConstructions" layoutX="38.0" layoutY="93.0" prefHeight="497.0" prefWidth="220.0" AnchorPane.bottomAnchor="101.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0" />
       <Button fx:id="bouton" layoutX="834.0" layoutY="562.0" mnemonicParsing="false" onAction="#bouton_action" text="MODIFIER" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="562.0" />
       <ListView fx:id="listeBriques" layoutX="29.0" layoutY="29.0" prefHeight="214.0" prefWidth="220.0" visible="false" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="67.0" />
       <Button fx:id="bAjout" layoutX="14.0" layoutY="561.0" mnemonicParsing="false" onAction="#ajout_cons" prefHeight="46.0" prefWidth="46.0" text="+" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0">
@@ -42,5 +42,10 @@
             <Font name="Arial Nova Bold" size="20.0" />
          </font>
       </Button>
+      <TextField fx:id="consNomInput" alignment="CENTER" layoutX="368.0" layoutY="194.0" maxHeight="46.0" maxWidth="220.0" prefHeight="46.0" prefWidth="220.0" promptText="NOM CONSTRUCTION" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="0.0">
+         <font>
+            <Font name="Arial Nova Bold" size="16.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

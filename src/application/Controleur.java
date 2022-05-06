@@ -23,7 +23,7 @@ public class Controleur implements Initializable {
 	@FXML
 	private ChoiceBox<String> couleurInput;
 	@FXML
-	private TextField largeurInput, longeurInput, hauteurInput;
+	private TextField largeurInput, longeurInput, hauteurInput, consNomInput;
 	@FXML
 	private ListView<String> listeConstructions, listeBriques;
 
@@ -37,6 +37,7 @@ public class Controleur implements Initializable {
 		this.hauteurInput.setVisible(!this.hauteurInput.isVisible());
 		this.largeurInput.setVisible(!this.largeurInput.isVisible());
 		this.longeurInput.setVisible(!this.longeurInput.isVisible());
+		this.consNomInput.setVisible(!this.consNomInput.isVisible());
 		this.bAjout.setVisible(!this.bAjout.isVisible());
 		this.bSuppr.setVisible(!this.bSuppr.isVisible());
 		this.bSupprBrique.setVisible(!this.bSupprBrique.isVisible());
@@ -81,5 +82,7 @@ public class Controleur implements Initializable {
 			}
 		});
 		couleurInput.getSelectionModel().select(0);
+
+		// - - - - - CREATION NOUVELLE CONSTRUCTION - - - - -
 	}
 }
