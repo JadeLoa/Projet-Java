@@ -1,10 +1,13 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.geometry.Point3D;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Box;
 
 public class Piece {
-	public static final int PAS=50;
+	public static final double PAS=50;
 
     public int hauteur, largeur, longueur;
     public Color couleur;
@@ -56,6 +59,17 @@ public class Piece {
 		return pF;
 	}
 	
+	
+	public ArrayList<Box> generate3DBoxes(){
+		ArrayList<Box> boxes=new ArrayList();
+		Box box=new Box();
+		box.setWidth(PAS*this.largeur);
+		box.setHeight(PAS*this.hauteur);
+		box.setDepth(PAS*this.longueur);
+		boxes.add(box);
+		
+		return boxes;
+	}
 	
     //public String toString() {
     //	return this.x + "," + this.y + "," + this.z;
