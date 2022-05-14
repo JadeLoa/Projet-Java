@@ -59,7 +59,7 @@ public class Controleur implements Initializable {
 		this.modele = new Modele(); // Creation classe modèle
 
 		// - - - - - LISTE DES CONSTRUCTIONS - - - - -
-		//listeConstructions.getItems().addAll(this.modele.rechercherConstruction()); // Obtention via fichiers
+		listeConstructions.getItems().addAll(this.modele.rechercherConstruction()); // Obtention via fichiers
 		listeConstructions.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
