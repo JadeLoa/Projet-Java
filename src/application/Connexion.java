@@ -1,4 +1,3 @@
-
 package application;
 
 public class Connexion {
@@ -9,5 +8,7 @@ public class Connexion {
         this.pieceFemelle = pieceFemelle;
         this.connecteurF = connecteurF;
     }
+
+
 
 }

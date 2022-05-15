@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class Controleur implements Initializable {
 	Modele modele;
@@ -23,11 +24,10 @@ public class Controleur implements Initializable {
 	@FXML
 	private ChoiceBox<String> couleurInput;
 	@FXML
-	private TextField largeurInput, longeurInput, hauteurInput, consNomInput;
+	private TextField largeurInput, longueurInput, hauteurInput, consNomInput;
 	@FXML
 	private ListView<String> listeConstructions, listeBriques;
 
-	private String[] temporaire_listView2 = { "Brique 1", "Brique 2", "Brique 3" };
 	private String[] listColors = { "Rouge", "Bleu", "Vert", "Jaune", "Noir", "Gris", "Orange" };
 
 	public void bouton_action() {
@@ -36,7 +36,7 @@ public class Controleur implements Initializable {
 		this.couleurInput.setVisible(!this.couleurInput.isVisible());
 		this.hauteurInput.setVisible(!this.hauteurInput.isVisible());
 		this.largeurInput.setVisible(!this.largeurInput.isVisible());
-		this.longeurInput.setVisible(!this.longeurInput.isVisible());
+		this.longueurInput.setVisible(!this.longueurInput.isVisible());
 		this.consNomInput.setVisible(!this.consNomInput.isVisible());
 		this.bAjout.setVisible(!this.bAjout.isVisible());
 		this.bSuppr.setVisible(!this.bSuppr.isVisible());
@@ -51,7 +51,15 @@ public class Controleur implements Initializable {
 	}
 
 	public void suppr_cons() {
+		String nomC = this.listeConstructions.getSelectionModel().getSelectedItem();
+		if (this.modele.supprimerConstruction(nomC)) {
+			this.listeConstructions.getItems().remove(nomC);
+		}
+	}
 
+	@SuppressWarnings("exports")
+	public void canvas_mouv(MouseEvent mEvent) {
+		System.out.println(mEvent.getX() + ", " + mEvent.getY());
 	}
 
 	@Override
@@ -59,7 +67,7 @@ public class Controleur implements Initializable {
 		this.modele = new Modele(); // Creation classe modèle
 
 		// - - - - - LISTE DES CONSTRUCTIONS - - - - -
-		//listeConstructions.getItems().addAll(this.modele.rechercherConstruction()); // Obtention via fichiers
+		listeConstructions.getItems().addAll(this.modele.rechercherConstruction()); // Obtention via fichiers
 		listeConstructions.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
@@ -68,7 +76,7 @@ public class Controleur implements Initializable {
 		});
 
 		// - - - - - LISTE DES BRIQUES (MODIFICATION) - - - - -
-		listeBriques.getItems().addAll(temporaire_listView2);
+		listeBriques.getItems().addAll(ListeBriques.briques.keySet());
 		listeBriques.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
@@ -85,5 +93,18 @@ public class Controleur implements Initializable {
 			}
 		});
 		couleurInput.getSelectionModel().select(0);
+
+		// - - - - - FILTRAGE DES BRIQUES - - - - -
+		this.largeurInput.textProperty().addListener((observable, oldValue, newValue) -> {
+			System.out.println("nouvelle largeur : " + newValue);
+		});
+		this.longueurInput.textProperty().addListener((observable, oldValue, newValue) -> {
+			System.out.println("nouvelle longueur : " + newValue);
+		});
+		this.hauteurInput.textProperty().addListener((observable, oldValue, newValue) -> {
+			System.out.println("nouvelle hauteur : " + newValue);
+		});
+
+		// - - - - - CANVAS - - - - -
 	}
 }
