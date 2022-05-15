@@ -18,9 +18,9 @@ public class Piece {
         this.largeur = largeur;
         this.longueur = longueur;
         this.couleur = couleur;
-        this.connecteursM = new Connexion[largeur][longueur];
-        for (int i = 0; i < largeur; i++) {
-            for (int j = 0; j < longueur; j++) {
+        this.connecteursM = new Connexion[longueur][largeur];
+        for (int i = 0; i < longueur; i++) {
+            for (int j = 0; j < largeur; j++) {
                 this.connecteursM[i][j] = null;
             }
         }
@@ -62,14 +62,39 @@ public class Piece {
 	
 	public ArrayList<Box> generate3DBoxes(){
 		ArrayList<Box> boxes=new ArrayList();
-		Box box=new Box();
-		box.setWidth(PAS*this.largeur);
-		box.setHeight(PAS*this.hauteur);
-		box.setDepth(PAS*this.longueur);
-		boxes.add(box);
+		Box boxM=new Box();
+		boxM.setWidth(PAS*this.largeur);
+		boxM.setHeight(PAS*this.hauteur);
+		boxM.setDepth(PAS*this.longueur);
+		boxes.add(boxM);
+		
+		for(int i=0;i<this.connecteursM.length;i++)
+			for(int j=0;j<this.connecteursM[i].length;j++)
+			{
+				if (this.connecteursM[i][j]!=null) {
+					Piece pieceF=this.connecteursM[i][j].pieceFemelle;
+					Box boxF=new Box();
+					boxF.setWidth(PAS*pieceF.largeur);
+					boxF.setHeight(PAS*pieceF.hauteur);
+					boxF.setDepth(PAS*pieceF.longueur);	
+					int i1=this.connecteursM[i][j].connecteurF.i;
+					int j1=this.connecteursM[i][j].connecteurF.j;
+					double depx,depy,depz;
+					depy = boxM.translateYProperty().get()-PAS;
+					boxF.translateYProperty().set(depy);
+					depx = boxM.translateXProperty().get()+(i1 + pieceF.largeur/2.0 -i-this.largeur/2.0)*PAS;
+					boxF.translateXProperty().set(depx);
+					depz = boxM.translateZProperty().get()+(j1 - pieceF.longueur/2.0 +j-this.longueur/2.0)*PAS;
+					boxF.translateZProperty().set(depz);					
+					boxes.add(boxF);
+				}
+			}
 		
 		return boxes;
 	}
+	
+	
+	
 	
     //public String toString() {
     //	return this.x + "," + this.y + "," + this.z;
