@@ -29,7 +29,7 @@
          <font>
             <Font name="Arial Nova Bold" size="10.0" />
          </font></TextField>
-      <TextField fx:id="longeurInput" alignment="CENTER" layoutX="340.0" layoutY="111.0" maxHeight="31.0" maxWidth="72.0" prefHeight="31.0" prefWidth="72.0" promptText="LONGUEUR" visible="false" AnchorPane.leftAnchor="76.0" AnchorPane.topAnchor="34.0">
+      <TextField fx:id="longueurInput" alignment="CENTER" layoutX="340.0" layoutY="111.0" maxHeight="31.0" maxWidth="72.0" prefHeight="31.0" prefWidth="72.0" promptText="LONGUEUR" visible="false" AnchorPane.leftAnchor="76.0" AnchorPane.topAnchor="34.0">
          <font>
             <Font name="Arial Nova Bold" size="10.0" />
          </font></TextField>

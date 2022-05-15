@@ -23,7 +23,7 @@ public class Controleur implements Initializable {
 	@FXML
 	private ChoiceBox<String> couleurInput;
 	@FXML
-	private TextField largeurInput, longeurInput, hauteurInput, consNomInput;
+	private TextField largeurInput, longueurInput, hauteurInput, consNomInput;
 	@FXML
 	private ListView<String> listeConstructions, listeBriques;
 
@@ -36,7 +36,7 @@ public class Controleur implements Initializable {
 		this.couleurInput.setVisible(!this.couleurInput.isVisible());
 		this.hauteurInput.setVisible(!this.hauteurInput.isVisible());
 		this.largeurInput.setVisible(!this.largeurInput.isVisible());
-		this.longeurInput.setVisible(!this.longeurInput.isVisible());
+		this.longueurInput.setVisible(!this.longueurInput.isVisible());
 		this.consNomInput.setVisible(!this.consNomInput.isVisible());
 		this.bAjout.setVisible(!this.bAjout.isVisible());
 		this.bSuppr.setVisible(!this.bSuppr.isVisible());
@@ -88,5 +88,16 @@ public class Controleur implements Initializable {
 			}
 		});
 		couleurInput.getSelectionModel().select(0);
+
+		// - - - - - FILTRAGE DES BRIQUES - - - - -
+		this.largeurInput.textProperty().addListener((observable, oldValue, newValue) -> {
+			System.out.println("nouvelle largeur : " + newValue);
+		});
+		this.longueurInput.textProperty().addListener((observable, oldValue, newValue) -> {
+			System.out.println("nouvelle longueur : " + newValue);
+		});
+		this.hauteurInput.textProperty().addListener((observable, oldValue, newValue) -> {
+			System.out.println("nouvelle hauteur : " + newValue);
+		});
 	}
 }
