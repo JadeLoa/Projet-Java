@@ -199,10 +199,9 @@ public class Modele {
 		// true si on a ajouté la construction, false sinon
 	}
 
-	boolean supprimerConstruction() {
-		// supprime la construction de la liste construction
-		// retourne liste construction à jour
-		return false; // true si on a suprimé la construction, false sinon
+	boolean supprimerConstruction(String nomC) {
+		File f = new File("BibliConstruction/" + nomC + ".json");
+		return f.delete();
 	}
 
 	void changerCouleur(int i) {

@@ -51,7 +51,10 @@ public class Controleur implements Initializable {
 	}
 
 	public void suppr_cons() {
-
+		String nomC = this.listeConstructions.getSelectionModel().getSelectedItem();
+		if (this.modele.supprimerConstruction(nomC)) {
+			this.listeConstructions.getItems().remove(nomC);
+		}
 	}
 
 	@Override
