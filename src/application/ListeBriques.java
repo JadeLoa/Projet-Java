@@ -15,4 +15,8 @@ public class ListeBriques {
 		}
 		briques = Collections.unmodifiableMap(aMap);
 	}
+
+	public String filtre(String largeur, String longueur, String hauteur) {
+		return "";
+	}
 }

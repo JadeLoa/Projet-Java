@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class Controleur implements Initializable {
 	Modele modele;
@@ -56,6 +57,11 @@ public class Controleur implements Initializable {
 		}
 	}
 
+	@SuppressWarnings("exports")
+	public void canvas_mouv(MouseEvent mEvent) {
+		System.out.println(mEvent.getX() + ", " + mEvent.getY());
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		this.modele = new Modele(); // Creation classe modèle
@@ -98,5 +104,7 @@ public class Controleur implements Initializable {
 		this.hauteurInput.textProperty().addListener((observable, oldValue, newValue) -> {
 			System.out.println("nouvelle hauteur : " + newValue);
 		});
+
+		// - - - - - CANVAS - - - - -
 	}
 }
