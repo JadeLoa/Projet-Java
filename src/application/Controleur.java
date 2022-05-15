@@ -27,7 +27,6 @@ public class Controleur implements Initializable {
 	@FXML
 	private ListView<String> listeConstructions, listeBriques;
 
-	private String[] temporaire_listView2 = { "Brique 1", "Brique 2", "Brique 3" };
 	private String[] listColors = { "Rouge", "Bleu", "Vert", "Jaune", "Noir", "Gris", "Orange" };
 
 	public void bouton_action() {
@@ -71,7 +70,7 @@ public class Controleur implements Initializable {
 		});
 
 		// - - - - - LISTE DES BRIQUES (MODIFICATION) - - - - -
-		listeBriques.getItems().addAll(temporaire_listView2);
+		listeBriques.getItems().addAll(ListeBriques.briques.keySet());
 		listeBriques.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
