@@ -91,15 +91,13 @@ public class Modele {
 		// lorsque l'utilisateur clique sur une construction elle devient la
 		// constructionEnCours
 		// this.constructionEnCours.listeBrique.add(new Brique(1, 2, 1, 10, 0, 0, 0));
-
-		System.out.println(this.pdv);
+		gc.beginPath();
+		gc.setFill(Color.WHITE);
+		gc.rect(0, 0, 500, 500);
+		gc.fill();
 
 		if (this.constructionEnCours.listeBrique.size() > 0) {
 			LinkedList<Brique> listeBriques = this.ordreBrique(this.constructionEnCours.listeBrique);
-			gc.beginPath();
-			gc.setFill(Color.WHITE);
-			gc.rect(0, 0, 500, 500);
-			gc.fill();
 			gc.beginPath();
 
 			for (Brique b : listeBriques) {
@@ -107,7 +105,6 @@ public class Modele {
 				for (int x = 0; x < b.largeur; x++) {
 					for (int y = 0; y < b.longueur; y++) {
 						for (int z = 0; z < b.hauteur; z++) {
-							System.out.println(x + ", " + y + ", " + z);
 							switch (this.pdv) {
 							case DESSUS:
 								gc.fillRect((b.x + x) * 25, 475 - (b.y + y) * 25, 25, 25);
@@ -256,6 +253,7 @@ public class Modele {
 			}
 		}
 		System.out.println(str + " a ete charge"); // TODO delete later
+		this.afficherConstruction();
 	}
 
 	void enregisterConstructions() {

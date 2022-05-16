@@ -14,6 +14,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.TextFlow;
 
 public class Controleur implements Initializable {
 	Modele modele;
@@ -28,6 +29,8 @@ public class Controleur implements Initializable {
 	private TextField largeurInput, longueurInput, hauteurInput, consNomInput;
 	@FXML
 	private ListView<String> listeConstructions, listeBriques;
+	@FXML
+	private TextFlow guide;
 
 	private String[] listColors = { "Rouge", "Orange", "Jaune", "Vert", "Bleu", "Violet", "Noir" };
 	private int[] coordonneesCanvas = { -1, -1 };
@@ -44,8 +47,8 @@ public class Controleur implements Initializable {
 			this.bAjout.setVisible(!this.bAjout.isVisible());
 			this.bSuppr.setVisible(!this.bSuppr.isVisible());
 			this.bSupprBrique.setVisible(!this.bSupprBrique.isVisible());
+			this.guide.setVisible(!this.guide.isVisible());
 			if (this.listeBriques.isVisible()) {
-				this.modele.chargerConstruction(this.listeConstructions.getSelectionModel().getSelectedItem());
 				this.modele.changerPDV(PointVue.DESSUS);
 			} else {
 				this.modele.enregisterConstructions();
@@ -98,7 +101,7 @@ public class Controleur implements Initializable {
 		listeConstructions.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
-				System.out.println(listeConstructions.getSelectionModel().getSelectedItem());
+				modele.chargerConstruction(listeConstructions.getSelectionModel().getSelectedItem());
 			}
 		});
 
