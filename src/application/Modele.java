@@ -184,7 +184,6 @@ public class Modele {
 		Construction newC = new Construction(nomNouvelleC);
 
 		Gson gson = new Gson();
-		String json = gson.toJson(newC);
 
 		try (FileWriter writer = new FileWriter("BibliConstruction/" + nomNouvelleC + ".json")) {
 			gson.toJson(newC, writer);
@@ -219,6 +218,18 @@ public class Modele {
 			}
 		}
 		System.out.println(str + " a ete charge"); // TODO delete later
+	}
+
+	void enregisterConstructions() {
+		Gson gson = new Gson();
+
+		try (FileWriter writer = new FileWriter(
+				"BibliConstruction/" + this.constructionEnCours.nomConstruction + ".json")) {
+			gson.toJson(this.constructionEnCours, writer);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

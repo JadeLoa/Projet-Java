@@ -47,7 +47,7 @@ public class Controleur implements Initializable {
 			if (this.listeBriques.isVisible()) {
 				this.modele.chargerConstruction(this.listeConstructions.getSelectionModel().getSelectedItem());
 			} else {
-
+				this.modele.enregisterConstructions();
 			}
 		}
 	}
@@ -77,7 +77,6 @@ public class Controleur implements Initializable {
 				this.coordonneesCanvas[0] = x2;
 				this.coordonneesCanvas[1] = y2;
 				// TODO DELETE LATER
-				System.out.println(x2 + ", " + y2);
 				GraphicsContext ctx = this.canvas.getGraphicsContext2D();
 				ctx.rect(x2 * 25, y2 * 25, 25, 25);
 				ctx.fill();
