@@ -28,8 +28,16 @@ public class Modele {
 	};
 
 	private PointVue pdv = PointVue.N;
-	private Color[] listeCouleurs = { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.VIOLET,
-			Color.BLACK, Color.GRAY };
+
+	private Color[][] listeCouleurs = { { Color.web("#e40303"), Color.web("#fc3e3e"), Color.web("#a00202") }, // rouge
+			{ Color.web("#ff8c00"), Color.web("#ffaf4d"), Color.web("#b36200") }, // orange
+			{ Color.web("#ffed00"), Color.web("#fff24d"), Color.web("#b3a600") }, // jaune
+			{ Color.web("#008026"), Color.web("#00f348"), Color.web("#005a1b") }, // vert
+			{ Color.web("#004dff"), Color.web("#4d82ff"), Color.web("#0036b3") }, // bleu
+			{ Color.web("#750787"), Color.web("#d00cf0"), Color.web("#52055f") }, // violet
+			{ Color.web("#1e1e1f"), Color.web("#606063"), Color.web("#151516") }, // noir
+
+	};
 	private int couleurEnCours = 0; // couleur par défaut (indice)
 	private LinkedList<Construction> listeConstruction;
 	private LinkedList<Brique> ordreB;
@@ -85,12 +93,6 @@ public class Modele {
 
 		LinkedList<Brique> testL = new LinkedList<>(); // TODO renplacer avec liste de construction
 		/* @formatter:off
-		testL.add(new Brique(2, 3, 4, Color.BLACK, 0, 3, 0));
-		testL.add(new Brique(1, 1, 1, Color.RED, 9, 2, 17));
-		testL.add(new Brique(10, 1, 1, Color.GREEN, 2, 0, 0));
-		testL.add(new Brique(2, 2, 1, Color.BLUE, 10, 1, 15));
-
-		testL = this.ordreBrique(testL);
 
 		for (int i = 0; i < testL.size(); i++) {
 			Brique briqueEnCours = testL.get(i);

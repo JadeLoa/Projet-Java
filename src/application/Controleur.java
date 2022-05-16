@@ -29,7 +29,7 @@ public class Controleur implements Initializable {
 	@FXML
 	private ListView<String> listeConstructions, listeBriques;
 
-	private String[] listColors = { "Rouge", "Bleu", "Vert", "Jaune", "Noir", "Gris", "Orange" };
+	private String[] listColors = { "Rouge", "Orange", "Jaune", "Vert", "Bleu", "Violet", "Noir" };
 	private int[] coordonneesCanvas = { -1, -1 };
 
 	public void bouton_action() {
@@ -69,7 +69,7 @@ public class Controleur implements Initializable {
 			if (x < 500 && y < 500 && (x2 != this.coordonneesCanvas[0] || y2 != this.coordonneesCanvas[1])) {
 				this.coordonneesCanvas[0] = x2;
 				this.coordonneesCanvas[1] = y2;
-				// DELETE LATER
+				// TODO DELETE LATER
 				System.out.println(x2 + ", " + y2);
 				GraphicsContext ctx = this.canvas.getGraphicsContext2D();
 				ctx.rect(x2 * 25, y2 * 25, 25, 25);
