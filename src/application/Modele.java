@@ -96,9 +96,11 @@ public class Modele {
 
 		if (this.constructionEnCours.listeBrique.size() > 0) {
 			LinkedList<Brique> listeBriques = this.ordreBrique(this.constructionEnCours.listeBrique);
-			// gc.setFill(Color.WHITE);
-			// gc.rect(0, 0, 500, 500);
-			// gc.fill();
+			gc.beginPath();
+			gc.setFill(Color.WHITE);
+			gc.rect(0, 0, 500, 500);
+			gc.fill();
+			gc.beginPath();
 
 			for (Brique b : listeBriques) {
 				gc.setFill(this.listeCouleurs[b.couleur][0]);
