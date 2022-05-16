@@ -123,10 +123,31 @@ public class Modele {
 								gc.fillRect(475 - (b.x + x) * 25, 475 - (b.z + z) * 25, 25, 25);
 								break;
 							case NO:
-							case NE:
-							case SO:
-							case SE:
+								int ancreX = 295 + (b.x + x + b.y + y) * 5;
+								int ancreY = 250 - (b.z + z) * 6 - (-b.x - x + b.y + y) * 2;
+								gc.setFill(this.listeCouleurs[b.couleur][0]);
+								gc.fillRect(ancreX + 5, ancreY + 4, 1, 6);
+								gc.fillRect(ancreX + 6, ancreY + 3, 2, 6);
+								gc.fillRect(ancreX + 8, ancreY + 2, 2, 6);
+								gc.fill();
+								gc.beginPath();
+								gc.setFill(this.listeCouleurs[b.couleur][2]);
+								gc.fillRect(ancreX + 4, ancreY + 4, 1, 6);
+								gc.fillRect(ancreX + 2, ancreY + 3, 2, 6);
+								gc.fillRect(ancreX + 0, ancreY + 2, 2, 6);
+								gc.fill();
+								gc.beginPath();
+								gc.setFill(this.listeCouleurs[b.couleur][1]);
+								gc.fillRect(ancreX + 3, ancreY + 0, 4, 1);
+								gc.fillRect(ancreX + 1, ancreY + 1, 8, 1);
+								gc.fillRect(ancreX + 2, ancreY + 2, 6, 1);
+								gc.fillRect(ancreX + 4, ancreY + 3, 2, 1);
+								gc.fill();
 								break;
+							// case NE:
+							// case SO:
+							// case SE:
+							// break;
 							}
 							gc.fill();
 							// TODO ajouter iso

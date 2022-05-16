@@ -54,7 +54,7 @@ public class Controleur implements Initializable {
 				this.modele.changerPDV(PointVue.DESSUS);
 			} else {
 				this.modele.enregisterConstructions();
-				this.modele.changerPDV(PointVue.N);
+				this.modele.changerPDV(PointVue.NO);
 				this.supprMode = false;
 			}
 		}
