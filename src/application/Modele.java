@@ -40,6 +40,7 @@ public class Modele {
 	private int couleurEnCours = 0; // couleur par défaut (indice)
 	private LinkedList<Construction> listeConstruction;
 	private LinkedList<Brique> ordreB;
+	private int[] briqueEnCours = new int[4];
 
 	private Map<PointVue, int[]> coefVue = new HashMap<PointVue, int[]>();
 
@@ -98,9 +99,9 @@ public class Modele {
 
 		if (this.constructionEnCours.listeBrique.size() > 0) {
 			LinkedList<Brique> listeBriques = this.ordreBrique(this.constructionEnCours.listeBrique);
-			gc.beginPath();
 
 			for (Brique b : listeBriques) {
+				gc.beginPath();
 				gc.setFill(this.listeCouleurs[b.couleur][0]);
 				for (int x = 0; x < b.largeur; x++) {
 					for (int y = 0; y < b.longueur; y++) {
@@ -242,6 +243,16 @@ public class Modele {
 	}
 
 	void affichage_selection(int x, int y) {
+		if (this.briqueEnCours[0] != 0 && (x - this.briqueEnCours[0] / 2) >= 0 && (y - this.briqueEnCours[1] / 2) >= 0
+				&& (x - this.briqueEnCours[0] / 2) + this.briqueEnCours[0] <= 20
+				&& (y - this.briqueEnCours[1] / 2) + this.briqueEnCours[1] <= 20) {
+			this.afficherConstruction();
+			this.gc.beginPath();
+			this.gc.setFill(this.listeCouleurs[this.couleurEnCours][1]);
+			this.gc.rect((x - this.briqueEnCours[0] / 2) * 25, (y - this.briqueEnCours[1] / 2) * 25,
+					25 * this.briqueEnCours[0], 25 * this.briqueEnCours[1]);
+			this.gc.fill();
+		}
 
 	}
 
@@ -266,6 +277,13 @@ public class Modele {
 			e.printStackTrace();
 		}
 
+	}
+
+	void chargerBrique(int[] is) {
+		for (int i = 0; i < 3; i++) {
+			this.briqueEnCours[i] = is[i];
+		}
+		System.out.println(is[0] + ", " + is[1] + ", " + is[2] + " à été chargé");
 	}
 
 }

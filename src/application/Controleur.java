@@ -81,6 +81,7 @@ public class Controleur implements Initializable {
 			if (x < 500 && y < 500 && (x2 != this.coordonneesCanvas[0] || y2 != this.coordonneesCanvas[1])) {
 				this.coordonneesCanvas[0] = x2;
 				this.coordonneesCanvas[1] = y2;
+				this.modele.affichage_selection(x2, y2);
 			}
 		}
 
@@ -88,7 +89,8 @@ public class Controleur implements Initializable {
 
 	public void ajout_b() {
 		if (this.listeBriques.getSelectionModel().getSelectedItem() != null) {
-			System.out.println(this.listeBriques.getSelectionModel().getSelectedItem());
+			this.modele
+					.chargerBrique(ListeBriques.briques.get(this.listeBriques.getSelectionModel().getSelectedItem()));
 		}
 	}
 
