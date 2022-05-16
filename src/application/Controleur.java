@@ -61,17 +61,20 @@ public class Controleur implements Initializable {
 
 	@SuppressWarnings("exports")
 	public void canvas_mouv(MouseEvent mEvent) {
-		double x = mEvent.getX();
-		double y = mEvent.getY();
-		int x2 = (int) Math.floor(mEvent.getX() / 25);
-		int y2 = (int) Math.floor(mEvent.getY() / 25);
-		if (x < 500 && y < 500 && (x2 != this.coordonneesCanvas[0] || y2 != this.coordonneesCanvas[1])) {
-			this.coordonneesCanvas[0] = x2;
-			this.coordonneesCanvas[1] = y2;
-			System.out.println(x2 + ", " + y2);
-			GraphicsContext ctx = this.canvas.getGraphicsContext2D();
-			ctx.rect(x2 * 25, y2 * 25, 25, 25);
-			ctx.fill();
+		if (this.listeBriques.isVisible()) {
+			double x = mEvent.getX();
+			double y = mEvent.getY();
+			int x2 = (int) Math.floor(mEvent.getX() / 25);
+			int y2 = (int) Math.floor(mEvent.getY() / 25);
+			if (x < 500 && y < 500 && (x2 != this.coordonneesCanvas[0] || y2 != this.coordonneesCanvas[1])) {
+				this.coordonneesCanvas[0] = x2;
+				this.coordonneesCanvas[1] = y2;
+				// DELETE LATER
+				System.out.println(x2 + ", " + y2);
+				GraphicsContext ctx = this.canvas.getGraphicsContext2D();
+				ctx.rect(x2 * 25, y2 * 25, 25, 25);
+				ctx.fill();
+			}
 		}
 
 	}
