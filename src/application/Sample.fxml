@@ -39,7 +39,7 @@
          <font>
             <Font name="Arial Nova Bold" size="10.0" />
          </font></TextField>
-      <Button fx:id="bSupprBrique" layoutX="278.0" layoutY="501.0" mnemonicParsing="false" onAction="#suppr_cons" prefHeight="46.0" prefWidth="220.0" text="SUPPRIMER" textAlignment="CENTER" visible="false" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0">
+      <Button fx:id="bSupprBrique" layoutX="278.0" layoutY="501.0" mnemonicParsing="false" onAction="#suppr_b" prefHeight="46.0" prefWidth="220.0" text="SUPPRIMER" textAlignment="CENTER" visible="false" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0">
          <font>
             <Font name="Arial Nova Bold" size="20.0" />
          </font>

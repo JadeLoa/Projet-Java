@@ -35,6 +35,7 @@ public class Controleur implements Initializable {
 
 	private String[] listColors = { "Rouge", "Orange", "Jaune", "Vert", "Bleu", "Violet", "Noir" };
 	private int[] coordonneesCanvas = { -1, -1 };
+	private boolean supprMode = false;
 
 	public void bouton_action() {
 		if (this.listeConstructions.getSelectionModel().getSelectedItem() != null || this.listeBriques.isVisible()) {
@@ -54,6 +55,7 @@ public class Controleur implements Initializable {
 			} else {
 				this.modele.enregisterConstructions();
 				this.modele.changerPDV(PointVue.N);
+				this.supprMode = false;
 			}
 		}
 	}
@@ -81,7 +83,11 @@ public class Controleur implements Initializable {
 			if (x < 500 && y < 500 && (x2 != this.coordonneesCanvas[0] || y2 != this.coordonneesCanvas[1])) {
 				this.coordonneesCanvas[0] = x2;
 				this.coordonneesCanvas[1] = y2;
-				this.modele.affichage_selection(x2, y2);
+				if (this.supprMode) {
+					this.modele.affichage_suppression(x2, y2);
+				} else {
+					this.modele.affichage_selection(x2, y2);
+				}
 			}
 		}
 
@@ -95,19 +101,29 @@ public class Controleur implements Initializable {
 	}
 
 	public void clic_canvas(@SuppressWarnings("exports") MouseEvent mEvent) {
-		double x = mEvent.getX();
-		double y = mEvent.getY();
-		int x2 = (int) Math.floor(mEvent.getX() / 25);
-		int y2 = (int) Math.floor(mEvent.getY() / 25);
-		if (mEvent.getButton() == MouseButton.PRIMARY) {
-			this.modele.ajouterBrique(x2, 19 - y2);
-		} else if (mEvent.getButton() == MouseButton.SECONDARY) {
-			this.modele.tourner();
-			if (x < 500 && y < 500) {
-				this.modele.affichage_selection(x2, y2);
+		if (this.listeBriques.isVisible()) {
+			double x = mEvent.getX();
+			double y = mEvent.getY();
+			int x2 = (int) Math.floor(mEvent.getX() / 25);
+			int y2 = (int) Math.floor(mEvent.getY() / 25);
+			if (mEvent.getButton() == MouseButton.PRIMARY) {
+				if (this.supprMode) {
+					this.modele.supprimerBrique(x2, 19 - y2);
+					this.modele.afficherConstruction();
+				} else {
+					this.modele.ajouterBrique(x2, 19 - y2);
+				}
+			} else if (mEvent.getButton() == MouseButton.SECONDARY) {
+				this.modele.tourner();
+				if (x < 500 && y < 500) {
+					this.modele.affichage_selection(x2, y2);
+				}
 			}
 		}
+	}
 
+	public void suppr_b() {
+		this.supprMode ^= true;
 	}
 
 	@Override

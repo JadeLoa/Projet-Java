@@ -173,7 +173,6 @@ public class Modele {
 	void ajouterBrique(int x, int y) {
 		// creer brique à la première place directement au dessous possible
 		// ne pas sortir des limites
-		System.out.println(x + ", " + y);
 
 		int[] dim = this.briqueEnCours;
 		y -= dim[1] - 1;
@@ -193,11 +192,16 @@ public class Modele {
 	void supprimerBrique(int x, int y) {
 		// recherche la première brique dans la liste en partant du haut (z decroissant)
 		// et la supprime
+		LinkedList<Brique> lBriques = this.ordreBrique(this.constructionEnCours.listeBrique);
 
-		for (int i = 0; i < this.ordreB.size(); i++) {
-			if (this.ordreB.get(i).x == x && this.ordreB.get(i).y == y) {
-				this.ordreB.remove(i);
+		Brique briqueASuppr = null;
+		for (Brique b : lBriques) {
+			if (b.x <= x && b.x + b.largeur > x && b.y <= y && b.y + b.longueur > y) {
+				briqueASuppr = b;
 			}
+		}
+		if (briqueASuppr != null) {
+			this.constructionEnCours.listeBrique.remove(briqueASuppr);
 		}
 
 		// met la liste de brique a jour
@@ -256,7 +260,6 @@ public class Modele {
 			this.gc.rect(x * 25, y * 25, 25 * this.briqueEnCours[0], 25 * this.briqueEnCours[1]);
 			this.gc.fill();
 		}
-
 	}
 
 	void chargerConstruction(String str) {
@@ -297,4 +300,11 @@ public class Modele {
 		this.affichage_selection(this.briqueEnCours[0] * 25, this.briqueEnCours[1] * 25);
 	}
 
+	void affichage_suppression(int x, int y) {
+		this.afficherConstruction();
+		this.gc.beginPath();
+		this.gc.setFill(this.listeCouleurs[1][2]);
+		this.gc.rect(x * 25, y * 25, 25, 25);
+		this.gc.fill();
+	}
 }
