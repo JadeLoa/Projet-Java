@@ -1,28 +1,23 @@
 package application;
 
 import javafx.application.Application;
-import javafx.scene.Camera;
-import javafx.scene.PerspectiveCamera;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Box;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			// AnchorPane root = (AnchorPane)
-			// FXMLLoader.load(getClass().getResource("Sample.fxml"));
-			StackPane root = new StackPane();
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("Sample.fxml"));
+			// StackPane root = new StackPane();
 			Scene scene = new Scene(root, 900, 600, true);
-			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
+			/* @formatter:off
 			PhongMaterial redMaterial = new PhongMaterial();
 			redMaterial.setDiffuseColor(Color.DARKRED);
 			redMaterial.setSpecularColor(Color.RED);
@@ -45,7 +40,7 @@ public class Main extends Application {
 			scene.setCamera(camera);
 
 			// box2.translateXProperty().set(box2.translateXProperty().get()-25);
-			initMouseControl(scene, camera, primaryStage);
+			initMouseControl(scene, camera, primaryStage);@formatter:on*/
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -53,6 +48,7 @@ public class Main extends Application {
 
 	}
 
+	/* @formatter:off
 	private double anchorX, anchorY;
 
 	private void initMouseControl(Scene scene, Camera camera, Stage stage) {
@@ -71,7 +67,7 @@ public class Main extends Application {
 		stage.addEventHandler(ScrollEvent.SCROLL, event -> {
 			// box.setTranslateZ(box.getTranslateZ() + event.getDeltaY());
 		});
-	}
+	}@formatter:on*/
 
 	public static void main(String[] args) {
 		launch(args);

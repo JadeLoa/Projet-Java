@@ -8,6 +8,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
@@ -29,6 +30,7 @@ public class Controleur implements Initializable {
 	private ListView<String> listeConstructions, listeBriques;
 
 	private String[] listColors = { "Rouge", "Bleu", "Vert", "Jaune", "Noir", "Gris", "Orange" };
+	private int[] coordonneesCanvas = { -1, -1 };
 
 	public void bouton_action() {
 		this.listeConstructions.setVisible(!this.listeConstructions.isVisible());
@@ -59,7 +61,19 @@ public class Controleur implements Initializable {
 
 	@SuppressWarnings("exports")
 	public void canvas_mouv(MouseEvent mEvent) {
-		System.out.println(mEvent.getX() + ", " + mEvent.getY());
+		double x = mEvent.getX();
+		double y = mEvent.getY();
+		int x2 = (int) Math.floor(mEvent.getX() / 25);
+		int y2 = (int) Math.floor(mEvent.getY() / 25);
+		if (x < 500 && y < 500 && (x2 != this.coordonneesCanvas[0] || y2 != this.coordonneesCanvas[1])) {
+			this.coordonneesCanvas[0] = x2;
+			this.coordonneesCanvas[1] = y2;
+			System.out.println(x2 + ", " + y2);
+			GraphicsContext ctx = this.canvas.getGraphicsContext2D();
+			ctx.rect(x2 * 25, y2 * 25, 25, 25);
+			ctx.fill();
+		}
+
 	}
 
 	@Override
@@ -104,7 +118,5 @@ public class Controleur implements Initializable {
 		this.hauteurInput.textProperty().addListener((observable, oldValue, newValue) -> {
 			System.out.println("nouvelle hauteur : " + newValue);
 		});
-
-		// - - - - - CANVAS - - - - -
 	}
 }

@@ -208,4 +208,8 @@ public class Modele {
 		this.couleurEnCours = i;
 	}
 
+	void affichage_selection(int x, int y) {
+
+	}
+
 }
