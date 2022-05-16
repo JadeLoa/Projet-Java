@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.TextFlow;
 
@@ -71,8 +72,7 @@ public class Controleur implements Initializable {
 		}
 	}
 
-	@SuppressWarnings("exports")
-	public void canvas_mouv(MouseEvent mEvent) {
+	public void canvas_mouv(@SuppressWarnings("exports") MouseEvent mEvent) {
 		if (this.listeBriques.isVisible()) {
 			double x = mEvent.getX();
 			double y = mEvent.getY();
@@ -92,6 +92,22 @@ public class Controleur implements Initializable {
 			this.modele
 					.chargerBrique(ListeBriques.briques.get(this.listeBriques.getSelectionModel().getSelectedItem()));
 		}
+	}
+
+	public void clic_canvas(@SuppressWarnings("exports") MouseEvent mEvent) {
+		double x = mEvent.getX();
+		double y = mEvent.getY();
+		int x2 = (int) Math.floor(mEvent.getX() / 25);
+		int y2 = (int) Math.floor(mEvent.getY() / 25);
+		if (mEvent.getButton() == MouseButton.PRIMARY) {
+			this.modele.ajouterBrique(x2, 19 - y2);
+		} else if (mEvent.getButton() == MouseButton.SECONDARY) {
+			this.modele.tourner();
+			if (x < 500 && y < 500) {
+				this.modele.affichage_selection(x2, y2);
+			}
+		}
+
 	}
 
 	@Override

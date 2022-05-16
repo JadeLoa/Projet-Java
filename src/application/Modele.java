@@ -170,19 +170,22 @@ public class Modele {
 
 	}
 
-	void ajouterBrique(int largeur, int longueur, int hauteur, int x, int y, int z) {
+	void ajouterBrique(int x, int y) {
 		// creer brique à la première place directement au dessous possible
 		// ne pas sortir des limites
+		System.out.println(x + ", " + y);
 
-		/*
-		 * Brique newB = new Brique(largeur, longueur, hauteur, this.couleurEnCours, x,
-		 * y, z);
-		 * 
-		 * for (int i = 0; i < this.listeConstruction.size(); i++) { if
-		 * (this.listeConstruction.get(i).nomConstruction == this.constructionEnCours) {
-		 * this.listeConstruction.get(i).listeBrique.addLast(newB); } }
-		 */
-
+		int[] dim = this.briqueEnCours;
+		y -= dim[1] - 1;
+		int z = 0;
+		for (Brique b : this.constructionEnCours.listeBrique) {
+			if (b.x < x + dim[0] && b.x + b.largeur > x && b.y < y + dim[1] && b.y + b.longueur > y) {
+				z = b.z + b.hauteur;
+			}
+		}
+		if (z + dim[2] < 20) {
+			this.constructionEnCours.listeBrique.add(new Brique(dim[0], dim[1], dim[2], x, y, z, this.couleurEnCours));
+		}
 		// mise à jour du fichier listeBrique de cette construction
 
 	}
@@ -230,7 +233,9 @@ public class Modele {
 
 	boolean supprimerConstruction(String nomC) {
 		File f = new File("BibliConstruction/" + nomC + ".json");
-		return f.delete();
+		boolean b = f.delete();
+		this.rechercherConstruction();
+		return b;
 	}
 
 	void changerCouleur(int i) {
@@ -243,14 +248,12 @@ public class Modele {
 	}
 
 	void affichage_selection(int x, int y) {
-		if (this.briqueEnCours[0] != 0 && (x - this.briqueEnCours[0] / 2) >= 0 && (y - this.briqueEnCours[1] / 2) >= 0
-				&& (x - this.briqueEnCours[0] / 2) + this.briqueEnCours[0] <= 20
-				&& (y - this.briqueEnCours[1] / 2) + this.briqueEnCours[1] <= 20) {
+		if (this.briqueEnCours[0] != 0 && x >= 0 && y >= 0 && x + this.briqueEnCours[0] <= 20
+				&& y + this.briqueEnCours[1] <= 20) {
 			this.afficherConstruction();
 			this.gc.beginPath();
 			this.gc.setFill(this.listeCouleurs[this.couleurEnCours][1]);
-			this.gc.rect((x - this.briqueEnCours[0] / 2) * 25, (y - this.briqueEnCours[1] / 2) * 25,
-					25 * this.briqueEnCours[0], 25 * this.briqueEnCours[1]);
+			this.gc.rect(x * 25, y * 25, 25 * this.briqueEnCours[0], 25 * this.briqueEnCours[1]);
 			this.gc.fill();
 		}
 
@@ -277,6 +280,7 @@ public class Modele {
 			e.printStackTrace();
 		}
 
+		this.briqueEnCours = new int[4];
 	}
 
 	void chargerBrique(int[] is) {
@@ -284,6 +288,13 @@ public class Modele {
 			this.briqueEnCours[i] = is[i];
 		}
 		System.out.println(is[0] + ", " + is[1] + ", " + is[2] + " à été chargé");
+	}
+
+	void tourner() {
+		int tx = this.briqueEnCours[1];
+		this.briqueEnCours[1] = this.briqueEnCours[0];
+		this.briqueEnCours[0] = tx;
+		this.affichage_selection(this.briqueEnCours[0] * 25, this.briqueEnCours[1] * 25);
 	}
 
 }

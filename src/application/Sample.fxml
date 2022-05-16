@@ -25,7 +25,7 @@
             <Font name="Arial Nova Bold" size="20.0" />
          </font>
       </Button>
-      <Canvas fx:id="canvas" height="526.0" layoutX="244.0" layoutY="22.0" onMouseMoved="#canvas_mouv" width="634.0" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="244.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="22.0" />
+      <Canvas fx:id="canvas" height="526.0" layoutX="244.0" layoutY="22.0" onMouseClicked="#clic_canvas" onMouseMoved="#canvas_mouv" width="634.0" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="244.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="22.0" />
       <ChoiceBox fx:id="couleurInput" layoutX="366.0" layoutY="108.0" prefHeight="30.0" prefWidth="220.0" visible="false" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0" />
       <TextField fx:id="largeurInput" alignment="CENTER" layoutX="330.0" layoutY="101.0" maxHeight="31.0" maxWidth="72.0" prefHeight="31.0" prefWidth="72.0" promptText="LARGEUR" visible="false" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="34.0">
          <font>
