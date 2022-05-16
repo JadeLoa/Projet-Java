@@ -3,12 +3,12 @@ package application;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Modele.PointVue;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
@@ -46,8 +46,10 @@ public class Controleur implements Initializable {
 			this.bSupprBrique.setVisible(!this.bSupprBrique.isVisible());
 			if (this.listeBriques.isVisible()) {
 				this.modele.chargerConstruction(this.listeConstructions.getSelectionModel().getSelectedItem());
+				this.modele.changerPDV(PointVue.DESSUS);
 			} else {
 				this.modele.enregisterConstructions();
+				this.modele.changerPDV(PointVue.O);
 			}
 		}
 	}
@@ -76,10 +78,6 @@ public class Controleur implements Initializable {
 			if (x < 500 && y < 500 && (x2 != this.coordonneesCanvas[0] || y2 != this.coordonneesCanvas[1])) {
 				this.coordonneesCanvas[0] = x2;
 				this.coordonneesCanvas[1] = y2;
-				// TODO DELETE LATER
-				GraphicsContext ctx = this.canvas.getGraphicsContext2D();
-				ctx.rect(x2 * 25, y2 * 25, 25, 25);
-				ctx.fill();
 			}
 		}
 
@@ -87,7 +85,7 @@ public class Controleur implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		this.modele = new Modele(); // Creation classe modèle
+		this.modele = new Modele(this.canvas.getGraphicsContext2D()); // Creation classe modèle
 
 		// - - - - - LISTE DES CONSTRUCTIONS - - - - -
 		listeConstructions.getItems().addAll(this.modele.rechercherConstruction()); // Obtention via fichiers

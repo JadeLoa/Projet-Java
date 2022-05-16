@@ -23,10 +23,11 @@ public class Modele {
 	 */
 	private Construction constructionEnCours;
 
-	private enum PointVue {
+	public enum PointVue {
 		N, S, E, O, DESSUS, NE, NO, SE, SO
 	};
 
+	private GraphicsContext gc;
 	private PointVue pdv = PointVue.N;
 	private Color[][] listeCouleurs = { { Color.web("#e40303"), Color.web("#fc3e3e"), Color.web("#a00202") }, // rouge
 			{ Color.web("#ff8c00"), Color.web("#ffaf4d"), Color.web("#b36200") }, // orange
@@ -42,7 +43,8 @@ public class Modele {
 
 	private Map<PointVue, int[]> coefVue = new HashMap<PointVue, int[]>();
 
-	public Modele() {
+	public Modele(GraphicsContext graphicsContext) {
+		this.gc = graphicsContext;
 		int[][] coefs = { { 0, -1, 0 }, { 0, 1, 0 }, { -1, 0, 0 }, { 1, 0, 0 }, { 0, 0, 1 }, { -1, -1, 1 },
 				{ 1, -1, 1 }, { -1, 1, 1 }, { 1, 1, 1 } };
 		PointVue[] povs = { PointVue.N, PointVue.S, PointVue.E, PointVue.O, PointVue.DESSUS, PointVue.NE, PointVue.NO,
@@ -80,7 +82,7 @@ public class Modele {
 		return listResults;
 	}
 
-	void afficherConstruction(GraphicsContext gc) {
+	void afficherConstruction() {
 		// afficher la construction en cours grace au fichier dans lequel sont
 		// référencées toutes les briques
 		// contenues dans cette construction
@@ -88,27 +90,56 @@ public class Modele {
 
 		// lorsque l'utilisateur clique sur une construction elle devient la
 		// constructionEnCours
-		/* @formatter:off
+		// this.constructionEnCours.listeBrique.add(new Brique(1, 2, 1, 10, 0, 0, 0));
 
-		for (int i = 0; i < testL.size(); i++) {
-			Brique briqueEnCours = testL.get(i);
-			for (int x = 0; x < briqueEnCours.largeur; x++) {
-				for (int y = 0; y < briqueEnCours.longueur; y++) {
-					for (int z = 0; z < briqueEnCours.hauteur; z++) {
-						gc.setFill(briqueEnCours.couleur);
-						gc.fillRect((briqueEnCours.x + x) * 25, (briqueEnCours.z + z) * 25, briqueEnCours.largeur * 25,
-								briqueEnCours.hauteur * 25); // TODO ordre à changer en fonction de pdv
-						gc.fill();
-						// TODO ajouter iso
+		System.out.println(this.pdv);
+
+		if (this.constructionEnCours.listeBrique.size() > 0) {
+			LinkedList<Brique> listeBriques = this.ordreBrique(this.constructionEnCours.listeBrique);
+			// gc.setFill(Color.WHITE);
+			// gc.rect(0, 0, 500, 500);
+			// gc.fill();
+
+			for (Brique b : listeBriques) {
+				gc.setFill(this.listeCouleurs[b.couleur][0]);
+				for (int x = 0; x < b.largeur; x++) {
+					for (int y = 0; y < b.longueur; y++) {
+						for (int z = 0; z < b.hauteur; z++) {
+							System.out.println(x + ", " + y + ", " + z);
+							switch (this.pdv) {
+							case DESSUS:
+								gc.fillRect((b.x + x) * 25, 475 - (b.y + y) * 25, 25, 25);
+								break;
+							case N:
+								gc.fillRect((b.x + x) * 25, 475 - (b.z + z) * 25, 25, 25);
+								break;
+							case O:
+								gc.fillRect(475 - (b.y + y) * 25, 475 - (b.z + z) * 25, 25, 25);
+								break;
+							case E:
+								gc.fillRect((b.y + y) * 25, 475 - (b.z + z) * 25, 25, 25);
+								break;
+							case S:
+								gc.fillRect(475 - (b.x + x) * 25, 475 - (b.z + z) * 25, 25, 25);
+								break;
+							case NO:
+							case NE:
+							case SO:
+							case SE:
+								break;
+							}
+							gc.fill();
+							// TODO ajouter iso
+						}
 					}
 				}
 			}
 		}
-		@formatter:on */
+
 	}
 
 	LinkedList<Brique> ordreBrique(LinkedList<Brique> listeATrier) {
-		// fonction qui tri l'ordre briques
+		// fonction qui trie l'ordre des briques en entrée
 		// Nord : Y decroissant
 		// Sud : Y croissant
 		// Ouest : X croissant
@@ -204,6 +235,11 @@ public class Modele {
 
 	void changerCouleur(int i) {
 		this.couleurEnCours = i;
+	}
+
+	void changerPDV(PointVue pv) {
+		this.pdv = pv;
+		this.afficherConstruction();
 	}
 
 	void affichage_selection(int x, int y) {
