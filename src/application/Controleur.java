@@ -33,16 +33,23 @@ public class Controleur implements Initializable {
 	private int[] coordonneesCanvas = { -1, -1 };
 
 	public void bouton_action() {
-		this.listeConstructions.setVisible(!this.listeConstructions.isVisible());
-		this.listeBriques.setVisible(!this.listeBriques.isVisible());
-		this.couleurInput.setVisible(!this.couleurInput.isVisible());
-		this.hauteurInput.setVisible(!this.hauteurInput.isVisible());
-		this.largeurInput.setVisible(!this.largeurInput.isVisible());
-		this.longueurInput.setVisible(!this.longueurInput.isVisible());
-		this.consNomInput.setVisible(!this.consNomInput.isVisible());
-		this.bAjout.setVisible(!this.bAjout.isVisible());
-		this.bSuppr.setVisible(!this.bSuppr.isVisible());
-		this.bSupprBrique.setVisible(!this.bSupprBrique.isVisible());
+		if (this.listeConstructions.getSelectionModel().getSelectedItem() != null || this.listeBriques.isVisible()) {
+			this.listeConstructions.setVisible(!this.listeConstructions.isVisible());
+			this.listeBriques.setVisible(!this.listeBriques.isVisible());
+			this.couleurInput.setVisible(!this.couleurInput.isVisible());
+			this.hauteurInput.setVisible(!this.hauteurInput.isVisible());
+			this.largeurInput.setVisible(!this.largeurInput.isVisible());
+			this.longueurInput.setVisible(!this.longueurInput.isVisible());
+			this.consNomInput.setVisible(!this.consNomInput.isVisible());
+			this.bAjout.setVisible(!this.bAjout.isVisible());
+			this.bSuppr.setVisible(!this.bSuppr.isVisible());
+			this.bSupprBrique.setVisible(!this.bSupprBrique.isVisible());
+			if (this.listeBriques.isVisible()) {
+				this.modele.chargerConstruction(this.listeConstructions.getSelectionModel().getSelectedItem());
+			} else {
+
+			}
+		}
 	}
 
 	public void ajout_cons() {

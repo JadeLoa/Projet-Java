@@ -21,14 +21,13 @@ public class Modele {
 	/*
 	 * regroupe toutes les données et les états qui caractérisent l'application
 	 */
-	private String constructionEnCours;
+	private Construction constructionEnCours;
 
-	public enum PointVue {
+	private enum PointVue {
 		N, S, E, O, DESSUS, NE, NO, SE, SO
 	};
 
 	private PointVue pdv = PointVue.N;
-
 	private Color[][] listeCouleurs = { { Color.web("#e40303"), Color.web("#fc3e3e"), Color.web("#a00202") }, // rouge
 			{ Color.web("#ff8c00"), Color.web("#ffaf4d"), Color.web("#b36200") }, // orange
 			{ Color.web("#ffed00"), Color.web("#fff24d"), Color.web("#b3a600") }, // jaune
@@ -36,7 +35,6 @@ public class Modele {
 			{ Color.web("#004dff"), Color.web("#4d82ff"), Color.web("#0036b3") }, // bleu
 			{ Color.web("#750787"), Color.web("#d00cf0"), Color.web("#52055f") }, // violet
 			{ Color.web("#1e1e1f"), Color.web("#606063"), Color.web("#151516") }, // noir
-
 	};
 	private int couleurEnCours = 0; // couleur par défaut (indice)
 	private LinkedList<Construction> listeConstruction;
@@ -90,8 +88,6 @@ public class Modele {
 
 		// lorsque l'utilisateur clique sur une construction elle devient la
 		// constructionEnCours
-
-		LinkedList<Brique> testL = new LinkedList<>(); // TODO renplacer avec liste de construction
 		/* @formatter:off
 
 		for (int i = 0; i < testL.size(); i++) {
@@ -147,13 +143,14 @@ public class Modele {
 		// creer brique à la première place directement au dessous possible
 		// ne pas sortir des limites
 
-		Brique newB = new Brique(largeur, longueur, hauteur, this.couleurEnCours, x, y, z);
-
-		for (int i = 0; i < this.listeConstruction.size(); i++) {
-			if (this.listeConstruction.get(i).nomConstruction == this.constructionEnCours) {
-				this.listeConstruction.get(i).listeBrique.addLast(newB);
-			}
-		}
+		/*
+		 * Brique newB = new Brique(largeur, longueur, hauteur, this.couleurEnCours, x,
+		 * y, z);
+		 * 
+		 * for (int i = 0; i < this.listeConstruction.size(); i++) { if
+		 * (this.listeConstruction.get(i).nomConstruction == this.constructionEnCours) {
+		 * this.listeConstruction.get(i).listeBrique.addLast(newB); } }
+		 */
 
 		// mise à jour du fichier listeBrique de cette construction
 
@@ -212,6 +209,16 @@ public class Modele {
 
 	void affichage_selection(int x, int y) {
 
+	}
+
+	void chargerConstruction(String str) {
+		for (Construction c : this.listeConstruction) {
+			if (c.nomConstruction.equals(str)) {
+				this.constructionEnCours = c;
+				break;
+			}
+		}
+		System.out.println(str + " a ete charge"); // TODO delete later
 	}
 
 }
