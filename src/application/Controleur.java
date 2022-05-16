@@ -83,6 +83,12 @@ public class Controleur implements Initializable {
 
 	}
 
+	public void ajout_b() {
+		if (this.listeBriques.getSelectionModel().getSelectedItem() != null) {
+			System.out.println(this.listeBriques.getSelectionModel().getSelectedItem());
+		}
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		this.modele = new Modele(this.canvas.getGraphicsContext2D()); // Creation classe modèle
@@ -98,12 +104,6 @@ public class Controleur implements Initializable {
 
 		// - - - - - LISTE DES BRIQUES (MODIFICATION) - - - - -
 		listeBriques.getItems().addAll(ListeBriques.briques.keySet());
-		listeBriques.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-			@Override
-			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
-				System.out.println(listeBriques.getSelectionModel().getSelectedItem());
-			}
-		});
 
 		// - - - - - LISTE DES COULEURS POUR LES BRIQUES - - - - -
 		couleurInput.getItems().addAll(listColors);
