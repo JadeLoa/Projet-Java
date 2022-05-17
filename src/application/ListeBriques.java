@@ -2,7 +2,9 @@ package application;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class ListeBriques {
 	public static final Map<String, int[]> briques;
@@ -16,7 +18,63 @@ public class ListeBriques {
 		briques = Collections.unmodifiableMap(aMap);
 	}
 
-	public String filtre(String largeur, String longueur, String hauteur) {
-		return "";
+	public static Set<String> filtre(String largeur, String longueur, String hauteur) {
+		boolean valid = true;
+		Set<String> listeFiltree = new HashSet<>();
+		for (String s : ListeBriques.briques.keySet()) {
+			valid = true;
+			if (largeur.length() != 0 && longueur.length() != 0) {
+				try {
+					int dim = Integer.parseInt(largeur);
+					int dim2 = Integer.parseInt(longueur);
+					if (!(dim == ListeBriques.briques.get(s)[0] && dim2 == ListeBriques.briques.get(s)[1]
+							|| dim == ListeBriques.briques.get(s)[1] && dim == ListeBriques.briques.get(s)[0])) {
+						valid = false;
+					}
+				} catch (NumberFormatException e) {
+					return ListeBriques.briques.keySet();
+				} catch (NullPointerException e) {
+					return ListeBriques.briques.keySet();
+				}
+			} else if (largeur.length() != 0) {
+				try {
+					int dim = Integer.parseInt(largeur);
+					if (!(dim == ListeBriques.briques.get(s)[0] || dim == ListeBriques.briques.get(s)[1])) {
+						valid = false;
+					}
+				} catch (NumberFormatException e) {
+					return ListeBriques.briques.keySet();
+				} catch (NullPointerException e) {
+					return ListeBriques.briques.keySet();
+				}
+			} else if (longueur.length() != 0) {
+				try {
+					int dim = Integer.parseInt(longueur);
+					if (!(dim == ListeBriques.briques.get(s)[0] || dim == ListeBriques.briques.get(s)[1])) {
+						valid = false;
+					}
+				} catch (NumberFormatException e) {
+					return ListeBriques.briques.keySet();
+				} catch (NullPointerException e) {
+					return ListeBriques.briques.keySet();
+				}
+			}
+			if (hauteur.length() != 0) {
+				try {
+					int dim = Integer.parseInt(hauteur);
+					if (dim != ListeBriques.briques.get(s)[2]) {
+						valid = false;
+					}
+				} catch (NumberFormatException e) {
+					return ListeBriques.briques.keySet();
+				} catch (NullPointerException e) {
+					return ListeBriques.briques.keySet();
+				}
+			}
+			if (valid) {
+				listeFiltree.add(s);
+			}
+		}
+		return listeFiltree;
 	}
 }

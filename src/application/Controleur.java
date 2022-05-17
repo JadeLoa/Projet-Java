@@ -154,13 +154,19 @@ public class Controleur implements Initializable {
 
 		// - - - - - FILTRAGE DES BRIQUES - - - - -
 		this.largeurInput.textProperty().addListener((observable, oldValue, newValue) -> {
-			System.out.println("nouvelle largeur : " + newValue);
+			this.listeBriques.getItems().clear();
+			this.listeBriques.getItems().addAll(ListeBriques.filtre(this.largeurInput.getText(),
+					this.longueurInput.getText(), this.hauteurInput.getText()));
 		});
 		this.longueurInput.textProperty().addListener((observable, oldValue, newValue) -> {
-			System.out.println("nouvelle longueur : " + newValue);
+			this.listeBriques.getItems().clear();
+			this.listeBriques.getItems().addAll(ListeBriques.filtre(this.largeurInput.getText(),
+					this.longueurInput.getText(), this.hauteurInput.getText()));
 		});
 		this.hauteurInput.textProperty().addListener((observable, oldValue, newValue) -> {
-			System.out.println("nouvelle hauteur : " + newValue);
+			this.listeBriques.getItems().clear();
+			this.listeBriques.getItems().addAll(ListeBriques.filtre(this.largeurInput.getText(),
+					this.longueurInput.getText(), this.hauteurInput.getText()));
 		});
 	}
 }
