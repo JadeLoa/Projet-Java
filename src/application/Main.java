@@ -23,27 +23,6 @@ public class Main extends Application {
 
 	}
 
-	/* @formatter:off
-	private double anchorX, anchorY;
-
-	private void initMouseControl(Scene scene, Camera camera, Stage stage) {
-
-		scene.setOnMousePressed(event -> {
-			// Save start points
-			anchorX = event.getSceneX();
-			anchorY = event.getSceneY();
-		});
-
-		scene.setOnMouseDragged(event -> {
-			camera.setTranslateY(anchorY - event.getSceneY());
-			camera.setTranslateX(anchorX - event.getSceneX());
-		});
-
-		stage.addEventHandler(ScrollEvent.SCROLL, event -> {
-			// box.setTranslateZ(box.getTranslateZ() + event.getDeltaY());
-		});
-	}@formatter:on*/
-
 	public static void main(String[] args) {
 		launch(args);
 	}

@@ -78,7 +78,6 @@ public class Modele {
 				}
 			}
 		}
-		System.out.print(this.listeConstruction.size());
 		return listResults;
 	}
 
@@ -176,7 +175,6 @@ public class Modele {
 					&& X * listeATrier.get(i).x >= X * listeTriee.get(cpt).x
 					&& Y * listeATrier.get(i).y >= Y * listeTriee.get(cpt).y
 					&& Z * listeATrier.get(i).z >= Z * listeTriee.get(cpt).z) {
-				// System.out.println(i + " " + listeATrier.size());
 				cpt++;
 			}
 			listeTriee.add(cpt, listeATrier.get(i));
@@ -289,7 +287,6 @@ public class Modele {
 				break;
 			}
 		}
-		System.out.println(str + " a ete charge"); // TODO delete later
 		this.afficherConstruction();
 	}
 
@@ -310,7 +307,6 @@ public class Modele {
 		for (int i = 0; i < 3; i++) {
 			this.briqueEnCours[i] = is[i];
 		}
-		System.out.println(is[0] + ", " + is[1] + ", " + is[2] + " à été chargé");
 	}
 
 	void tourner() {
