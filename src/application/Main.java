@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Camera;
@@ -45,8 +47,9 @@ public class Main extends Application {
 //          pieceRacine.connecteursM[1][3] = new Connexion(pieceF1, new Position(0, 0));
 
 			pieceRacine = generer_demo();
-            
-            pieceRacine.generate3DBoxes().forEach(box1 -> {
+			ArrayList<Box> boxes=new ArrayList<Box>();
+			pieceRacine.generate3DBoxesRecursivly(0,0,0,boxes);
+			boxes.forEach(box1 -> {
                 root.getChildren().add(box1);
             });
             PerspectiveCamera camera = new PerspectiveCamera();
@@ -124,7 +127,7 @@ public class Main extends Application {
     
             
 public static Piece generer_demo(){
-        Piece pieceRacine,pieceF;
+        Piece pieceRacine,pieceF, pieceF1;
             pieceRacine = new Piece(1, 30, 30, Color.YELLOW);
             pieceF = new Piece(1, 30, 2, Color.GREEN);
             pieceRacine.connecteursM[0][0] = new Connexion(pieceF, new Position(0, 0));        
@@ -135,7 +138,52 @@ public static Piece generer_demo(){
             pieceF = new Piece(1, 2, 26, Color.RED);
             pieceRacine.connecteursM[2][28] = new Connexion(pieceF, new Position(0, 0));      
             pieceF = new Piece(1, 10, 10, Color.PURPLE);
-            pieceRacine.connecteursM[11][11] = new Connexion(pieceF, new Position(0, 0));              
+            pieceRacine.connecteursM[11][11] = new Connexion(pieceF, new Position(0, 0));
+            
+            pieceF = new Piece(1, 10, 10, Color.PURPLE);
+            pieceRacine.connecteursM[11][11] = new Connexion(pieceF, new Position(0, 0));     
+            
+            pieceF1 = new Piece(1, 5, 5, Color.YELLOW);
+            pieceF.connecteursM[3][3] = new Connexion(pieceF1, new Position(0, 0));  
+            
+            pieceF=pieceF1;
+            pieceF1 = new Piece(1, 5, 5, Color.GREEN);
+            pieceF.connecteursM[3][3] = new Connexion(pieceF1, new Position(0, 0)); 
+            pieceF=pieceF1;
+            pieceF1 = new Piece(1, 5, 5, Color.BLUE);
+            pieceF.connecteursM[3][3] = new Connexion(pieceF1, new Position(0, 0)); 
+            pieceF=pieceF1;
+            pieceF1 = new Piece(1, 5, 5, Color.GREEN);
+            pieceF.connecteursM[3][3] = new Connexion(pieceF1, new Position(0, 0)); 
+            pieceF=pieceF1;
+            pieceF1 = new Piece(1, 5, 5, Color.BLUE);
+            pieceF.connecteursM[3][3] = new Connexion(pieceF1, new Position(0, 0));             pieceF=pieceF1;
+            pieceF1 = new Piece(1, 5, 5, Color.GREEN);
+            pieceF.connecteursM[3][3] = new Connexion(pieceF1, new Position(0, 0)); 
+            pieceF=pieceF1;
+            pieceF1 = new Piece(1, 5, 5, Color.BLUE);
+            pieceF.connecteursM[3][3] = new Connexion(pieceF1, new Position(0, 0));             pieceF=pieceF1;
+            pieceF1 = new Piece(1, 5, 5, Color.GREEN);
+            pieceF.connecteursM[3][3] = new Connexion(pieceF1, new Position(0, 0)); 
+            pieceF=pieceF1;
+            pieceF1 = new Piece(1, 5, 5, Color.BLUE);
+            pieceF.connecteursM[3][3] = new Connexion(pieceF1, new Position(0, 0));             pieceF=pieceF1;
+            pieceF1 = new Piece(1, 5, 5, Color.GREEN);
+            pieceF.connecteursM[3][3] = new Connexion(pieceF1, new Position(0, 0)); 
+            pieceF=pieceF1;
+            pieceF1 = new Piece(1, 5, 5, Color.BLUE);
+            pieceF.connecteursM[3][3] = new Connexion(pieceF1, new Position(0, 0));             pieceF=pieceF1;
+            pieceF1 = new Piece(1, 5, 5, Color.GREEN);
+            pieceF.connecteursM[3][3] = new Connexion(pieceF1, new Position(0, 0)); 
+            pieceF=pieceF1;
+            pieceF1 = new Piece(1, 5, 5, Color.BLUE);
+            pieceF.connecteursM[3][3] = new Connexion(pieceF1, new Position(0, 0));             pieceF=pieceF1;
+            pieceF1 = new Piece(1, 5, 5, Color.GREEN);
+            pieceF.connecteursM[3][3] = new Connexion(pieceF1, new Position(0, 0)); 
+            pieceF=pieceF1;
+            pieceF1 = new Piece(1, 5, 5, Color.BLUE);
+            pieceF.connecteursM[3][3] = new Connexion(pieceF1, new Position(0, 0));
+            
         return pieceRacine;
         
     }

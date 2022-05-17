@@ -65,8 +65,9 @@ public class Piece {
 
 	
 	
-	public ArrayList<Box> generate3DBoxes(){
+	public ArrayList<Box> generate3DBoxes(double translateX, double translateY, double translateZ){
 		ArrayList<Box> boxes=new ArrayList();
+		
 		Box boxM=new Box();
 		PhongMaterial material = new PhongMaterial();
         material.setDiffuseColor(this.couleur);
@@ -76,6 +77,9 @@ public class Piece {
         boxM.setWidth(PAS * this.largeur);
         boxM.setHeight(PAS_H * this.hauteur);
         boxM.setDepth(PAS * this.longueur);
+        boxM.translateXProperty().set(translateX);
+        boxM.translateYProperty().set(translateY);
+        boxM.translateZProperty().set(translateZ);
 
         boxes.add(boxM);
 
@@ -101,6 +105,8 @@ public class Piece {
                     material.setSpecularColor(pieceF.couleur);
                     boxF.setMaterial(material);
                     boxes.add(boxF);
+                    
+                    pieceF.generate3DBoxes(boxF.translateXProperty().get(),boxF.translateYProperty().get(),boxF.translateZProperty().get());
                 }
             }
         }
@@ -108,7 +114,38 @@ public class Piece {
         return boxes;
 	}
 	
-	
+	 public void generate3DBoxesRecursivly(double translateX, double translateY, double translateZ,ArrayList<Box> boxes) {
+	        Box boxM = new Box();
+	        PhongMaterial material = new PhongMaterial();
+	        material.setDiffuseColor(this.couleur);
+	        material.setSpecularColor(this.couleur);
+	        boxM.setMaterial(material);
+
+	        boxM.setWidth(PAS * this.largeur);
+	        boxM.setHeight(PAS_H * this.hauteur);
+	        boxM.setDepth(PAS * this.longueur);
+	        boxM.translateXProperty().set(translateX);
+	        boxM.translateYProperty().set(translateY);
+	        boxM.translateZProperty().set(translateZ);
+
+	        boxes.add(boxM);
+
+	        for (int i = 0; i < this.connecteursM.length; i++) {
+	            for (int j = 0; j < this.connecteursM[i].length; j++) {
+	                if (this.connecteursM[i][j] != null) {
+	                    Piece pieceF = this.connecteursM[i][j].pieceFemelle;
+	                    int i1 = this.connecteursM[i][j].connecteurF.i;
+	                    int j1 = this.connecteursM[i][j].connecteurF.j;
+	                    double depx, depy, depz;
+	                    depy = boxM.translateYProperty().get() - PAS_H;
+	                    depx = boxM.translateXProperty().get() + ((j - j1) + (pieceF.largeur - this.largeur) / 2.0) * PAS;
+	                    depz = boxM.translateZProperty().get() + ((i1 - i) + (this.longueur - pieceF.longueur) / 2.0) * PAS;
+	                   
+	                    pieceF.generate3DBoxesRecursivly(depx,depy,depz,boxes);
+	                }
+	            }
+	        }
+	    }
 	
 	
     //public String toString() {
