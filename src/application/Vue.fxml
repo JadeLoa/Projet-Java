@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controleur">
@@ -49,13 +48,7 @@
             <Font name="Arial Nova Bold" size="16.0" />
          </font>
       </TextField>
-      <TextFlow fx:id="guide" layoutX="254.0" layoutY="551.0" mouseTransparent="true" prefHeight="31.0" prefWidth="562.0" visible="false" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="254.0">
-         <children>
-            <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="CLIC DROIT POUR TOURNER, ECHAP POUR DESELECTIONNER" textAlignment="CENTER" wrappingWidth="584.209228515625">
-               <font>
-                  <Font name="Arial Nova" size="18.0" />
-               </font>
-            </Text>
-         </children></TextFlow>
+      <TextFlow fx:id="guide" layoutX="254.0" layoutY="551.0" mouseTransparent="true" prefHeight="31.0" prefWidth="562.0" visible="false" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="254.0" />
+      <ChoiceBox fx:id="pv_input" layoutX="777.0" layoutY="10.0" prefHeight="26.0" prefWidth="114.0" />
    </children>
 </AnchorPane>

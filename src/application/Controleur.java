@@ -25,7 +25,7 @@ public class Controleur implements Initializable {
 	@FXML
 	private Canvas canvas;
 	@FXML
-	private ChoiceBox<String> couleurInput;
+	private ChoiceBox<String> couleurInput, pv_input;
 	@FXML
 	private TextField largeurInput, longueurInput, hauteurInput, consNomInput;
 	@FXML
@@ -34,6 +34,7 @@ public class Controleur implements Initializable {
 	private TextFlow guide;
 
 	private String[] listColors = { "Rouge", "Orange", "Jaune", "Vert", "Bleu", "Violet", "Noir" };
+	private String[] listPV = { "Nord", "Ouest", "Est", "Sud", "Dessus", "Nord-Ouest" };
 	private int[] coordonneesCanvas = { -1, -1 };
 	private boolean supprMode = false;
 
@@ -50,11 +51,12 @@ public class Controleur implements Initializable {
 			this.bSuppr.setVisible(!this.bSuppr.isVisible());
 			this.bSupprBrique.setVisible(!this.bSupprBrique.isVisible());
 			this.guide.setVisible(!this.guide.isVisible());
+			this.pv_input.setVisible(!this.pv_input.isVisible());
 			if (this.listeBriques.isVisible()) {
 				this.modele.changerPDV(PointVue.DESSUS);
 			} else {
 				this.modele.enregisterConstructions();
-				this.modele.changerPDV(PointVue.NO);
+				this.modele.changerPDV(PointVue.N);
 				this.supprMode = false;
 			}
 		}
@@ -168,5 +170,17 @@ public class Controleur implements Initializable {
 			this.listeBriques.getItems().addAll(ListeBriques.filtre(this.largeurInput.getText(),
 					this.longueurInput.getText(), this.hauteurInput.getText()));
 		});
+
+		// - - - - - POINT DE VUE - - - - -
+		this.pv_input.getItems().addAll(listPV);
+		pv_input.getSelectionModel().select(0);
+		this.pv_input.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
+				PointVue[] povs = { PointVue.N, PointVue.O, PointVue.E, PointVue.S, PointVue.DESSUS, PointVue.NO };
+				modele.changerPDV(povs[pv_input.getSelectionModel().getSelectedIndex()]);
+			}
+		});
+
 	}
 }
