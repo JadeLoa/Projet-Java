@@ -27,8 +27,8 @@ public class ListeBriques {
 				try {
 					int dim = Integer.parseInt(largeur);
 					int dim2 = Integer.parseInt(longueur);
-					if (!(dim == ListeBriques.briques.get(s)[0] && dim2 == ListeBriques.briques.get(s)[1]
-							|| dim == ListeBriques.briques.get(s)[1] && dim == ListeBriques.briques.get(s)[0])) {
+					if (!((dim == ListeBriques.briques.get(s)[0] && dim2 == ListeBriques.briques.get(s)[1])
+							|| (dim == ListeBriques.briques.get(s)[1] && dim2 == ListeBriques.briques.get(s)[0]))) {
 						valid = false;
 					}
 				} catch (NumberFormatException e) {
@@ -36,27 +36,31 @@ public class ListeBriques {
 				} catch (NullPointerException e) {
 					return ListeBriques.briques.keySet();
 				}
-			} else if (largeur.length() != 0) {
-				try {
-					int dim = Integer.parseInt(largeur);
-					if (!(dim == ListeBriques.briques.get(s)[0] || dim == ListeBriques.briques.get(s)[1])) {
-						valid = false;
+			} else {
+				if (largeur.length() != 0) {
+
+					try {
+						int dim = Integer.parseInt(largeur);
+						if (!(dim == ListeBriques.briques.get(s)[0] || dim == ListeBriques.briques.get(s)[1])) {
+							valid = false;
+						}
+					} catch (NumberFormatException e) {
+						return ListeBriques.briques.keySet();
+					} catch (NullPointerException e) {
+						return ListeBriques.briques.keySet();
 					}
-				} catch (NumberFormatException e) {
-					return ListeBriques.briques.keySet();
-				} catch (NullPointerException e) {
-					return ListeBriques.briques.keySet();
 				}
-			} else if (longueur.length() != 0) {
-				try {
-					int dim = Integer.parseInt(longueur);
-					if (!(dim == ListeBriques.briques.get(s)[0] || dim == ListeBriques.briques.get(s)[1])) {
-						valid = false;
+				if (longueur.length() != 0) {
+					try {
+						int dim = Integer.parseInt(longueur);
+						if (!(dim == ListeBriques.briques.get(s)[0] || dim == ListeBriques.briques.get(s)[1])) {
+							valid = false;
+						}
+					} catch (NumberFormatException e) {
+						return ListeBriques.briques.keySet();
+					} catch (NullPointerException e) {
+						return ListeBriques.briques.keySet();
 					}
-				} catch (NumberFormatException e) {
-					return ListeBriques.briques.keySet();
-				} catch (NullPointerException e) {
-					return ListeBriques.briques.keySet();
 				}
 			}
 			if (hauteur.length() != 0) {
