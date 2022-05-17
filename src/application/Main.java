@@ -17,31 +17,6 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
-			/* @formatter:off
-			PhongMaterial redMaterial = new PhongMaterial();
-			redMaterial.setDiffuseColor(Color.DARKRED);
-			redMaterial.setSpecularColor(Color.RED);
-
-			Piece pieceRacine = new Piece(1, 2, 5, Color.RED);
-			Piece pieceF1 = new Piece(1, 4, 2, Color.RED);
-
-			pieceRacine.connecteursM[0][1] = new Connexion(pieceF1, new Position(0, 0));
-
-			for (Box box1 : pieceRacine.generate3DBoxes()) {
-
-				box1.setMaterial(redMaterial);
-				root.getChildren().add(box1);
-				System.out.println(box1.getDepth() + "," + box1.getHeight() + "," + box1.getWidth());
-			}
-			PerspectiveCamera camera = new PerspectiveCamera();
-			camera.setTranslateX(0);
-			camera.setTranslateY(90);
-			camera.setTranslateZ(150);
-			scene.setCamera(camera);
-
-			// box2.translateXProperty().set(box2.translateXProperty().get()-25);
-			initMouseControl(scene, camera, primaryStage);@formatter:on*/
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
