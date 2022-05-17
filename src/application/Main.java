@@ -10,7 +10,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("Sample.fxml"));
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("Vue.fxml"));
 			// StackPane root = new StackPane();
 			Scene scene = new Scene(root, 900, 600, true);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
