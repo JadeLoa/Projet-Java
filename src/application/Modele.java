@@ -39,7 +39,6 @@ public class Modele {
 	};
 	private int couleurEnCours = 0; // couleur par défaut (indice)
 	private LinkedList<Construction> listeConstruction;
-	private LinkedList<Brique> ordreB;
 	private int[] briqueEnCours = new int[4];
 
 	private Map<PointVue, int[]> coefVue = new HashMap<PointVue, int[]>();
